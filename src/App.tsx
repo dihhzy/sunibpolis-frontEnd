@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom"
 import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
 import { News } from './Pages/News';
+import { Register } from './Pages/Register';
+
 
 function App() {
   return (
