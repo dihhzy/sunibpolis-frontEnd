@@ -1,5 +1,16 @@
-.form-box{
+.form-box-register{
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    margin: 0 auto;
+    background: #818FB4;
+    padding: 50px 60px 70px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
 
+.form-box-login{
     width: 90%;
     max-width: 450px;
     position: absolute;
@@ -50,7 +61,7 @@ input{
 
 .input-field i{
     margin-left: 15px;
-    margin-top: 18px;
+    margin-top: 3.2vh;
     color: #999;
 }
 

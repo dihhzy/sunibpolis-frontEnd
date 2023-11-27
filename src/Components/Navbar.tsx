@@ -39,9 +39,7 @@ export function Navbar() {
                             style={{ color: "rgb(245, 232, 199)" }}>
                             <Button className="d-flex align-items-center"
                                 style={{
-                                    paddingRight: "0px",
                                     fontSize: "16px",
-                                    width: "70px",
                                     height: "30px",
                                     backgroundColor: "rgb(129, 143, 180)",
                                     border: "none",
