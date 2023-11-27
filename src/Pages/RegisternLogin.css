@@ -1,4 +1,4 @@
-.form-box-register{
+.form-box-register {
     width: 90%;
     max-width: 450px;
     position: relative;
@@ -7,10 +7,10 @@
     padding: 50px 60px 70px;
     text-align: center;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 120px;
 }
 
-.form-box-login{
+.form-box-login {
     width: 90%;
     max-width: 450px;
     position: absolute;
@@ -23,14 +23,14 @@
     border-radius: 10px;
 }
 
-.form-box h1{
+.form-box h1 {
     font-size: 30px;
     margin-bottom: 60px;
     color: #363062;
     position: relative;
 }
 
-.form-box h1::after{
+.form-box h1::after {
     content: '';
     width: 30px;
     height: 4px;
@@ -42,16 +42,16 @@
     transform: translateX(-50%);
 }
 
-input{
+input {
     width: 100%;
     background: transparent;
     border: 0;
     outline: 0;
     padding: 18px 15px;
-    
+
 }
-  
-.input-field{
+
+.input-field {
     background: #eaeaea;
     margin: 15px 0;
     border-radius: 3px;
@@ -59,19 +59,19 @@ input{
     border-radius: 10px;
 }
 
-.input-field i{
+.input-field i {
     margin-left: 15px;
     margin-top: 3.2vh;
     color: #999;
 }
 
-.btn-field{
+.btn-field {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.btn-field button{
+.btn-field button {
     flex-basis: 48%;
     background: #363062;
     color: #eaeaea;
@@ -86,4 +86,4 @@ input{
 .btn-field button:hover {
     background-color: white;
     color: black;
-  }
+}

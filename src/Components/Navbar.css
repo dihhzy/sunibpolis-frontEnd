@@ -1,0 +1,14 @@
+.nav-link {
+    transition: color 0.3s;
+    margin-left: 20px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: rgb(216, 223, 245) !important;
+}
+
+.btn:hover {
+    border-color: rgb(129, 143, 180);
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+}

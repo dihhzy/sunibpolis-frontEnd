@@ -1,5 +1,6 @@
 import { Container, Button, Nav, Navbar as NavbarNav } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
+import './Navbar.css'
 
 export function Navbar() {
     return (
@@ -35,15 +36,19 @@ export function Navbar() {
                             style={{ color: "rgb(245, 232, 199)" }}>
                             Register
                         </Nav.Link>
-                        <Nav.Link to="/login" as={NavLink}
-                            style={{ color: "rgb(245, 232, 199)" }}>
+                        <Nav.Link to="/login" as={NavLink}>
                             <Button className="d-flex align-items-center"
                                 style={{
-                                    fontSize: "16px",
+                                    fontSize: "18px",
                                     height: "30px",
-                                    backgroundColor: "rgb(129, 143, 180)",
-                                    border: "none",
+                                    width: "75px",
+                                    backgroundColor: "rgb(54, 48, 98)",
+                                    border: "1px solid white",
                                     borderRadius: "10px",
+                                    color: "rgb(245, 232, 199)",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    padding: "2px 12px 5px 12px"
                                 }}>
                                 Login
                             </Button>
