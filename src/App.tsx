@@ -7,6 +7,8 @@ import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
 import { Movies } from './Pages/Movies';
 import { News } from './Pages/News';
+import { Register } from './Pages/Register';
+
 
 function App() {
   return (
