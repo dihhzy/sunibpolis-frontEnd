@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import './Login.css';
+import './RegisternLogin.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+
+
 interface LoginForm {
     email: string;
     password: string;
@@ -31,24 +33,25 @@ export function Login() {
         });
     };
     return (
-        <div className="main">
-            <div className="bagian-form">
-                <h1 className="judul">Login</h1>
+        <div className="container">
+            <div className="form-box-login">
+                <h1>Login</h1>
                 <form onSubmit={handleLogin}>
-                    <div className="pertanyaan">
+                    <div>
+                    <div className="input-field">
                         <i className='fa-solid fa-envelope'></i>
-                        <label htmlFor="Email">Email</label>
-                        <input type="text" id="Email" value={formData.email} onChange={handleInputChange} />
-                    </div>
-                    <div className="pertanyaan">
-                        <i className='fa-solid fa-lock'></i>
-                        <label htmlFor="Password">Password</label>
-                        <input type="text" id="Password" value={formData.password} onChange={handleInputChange} />
-                    </div>
-                    <div className="buttonT">
-                        <button type="submit">Login</button>
+                        <input type="text" placeholder="E-mail" id="Email" value={formData.email} onChange={handleInputChange} />
                     </div>
 
+                    <div className="input-field">
+                        <i className='fa-solid fa-lock'></i>
+                        <input type="text" placeholder="Password" id="Password" value={formData.password} onChange={handleInputChange} />
+                    </div>
+
+                    <div className="btn-field">
+                        <button type="submit">Login</button>
+                    </div>
+                    </div>
                 </form>
             </div>
         </div>

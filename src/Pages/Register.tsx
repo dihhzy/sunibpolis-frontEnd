@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import '../Register.css';
+import './RegisternLogin.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 
@@ -38,7 +38,7 @@ export function Register() {
 
   return (
     <div className='container'>
-        <div  className = 'form-box'>
+        <div  className = 'form-box-register'>
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
             <div>

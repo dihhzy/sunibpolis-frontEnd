@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Container } from 'react-bootstrap';
-import { Routes, Route } from "react-router-dom"
+import { Footer } from './Components/footer';
+import { Routes, Route } from "react-router-dom";
 import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
 import { News } from './Pages/News';
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Container>
+      <Footer />
     </div>
   );
 }
