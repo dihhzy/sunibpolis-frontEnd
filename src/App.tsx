@@ -8,7 +8,6 @@ import { MyTicket } from './Pages/MyTicket';
 import { News } from './Pages/News';
 import { Register } from './Pages/Register';
 
-
 function App() {
   return (
     <div className="App">
@@ -18,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/myTicket" element={<MyTicket />} />
           <Route path="/news" element={<News />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Container>
     </div>
