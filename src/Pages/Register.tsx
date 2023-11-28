@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import './RegisternLogin.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
 export function Register() {
   const [formData, setFormData] = useState({
     username: '',
@@ -38,76 +37,76 @@ export function Register() {
 
   return (
     <div className='container'>
-        <div  className = 'form-box-register'>
+      <div className='form-box-register'>
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
-            <div>
-                <div className='input-field'>
-                <i className='fa-solid fa-user'></i>
-                    <input
-                    type="text"
-                    placeholder="Username"
-                    name="username"
-                    id="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    />
-                </div>
-
-                <div className='input-field'>
-                    <i className='fa-solid fa-envelope'></i>
-                    <input
-                        type="email"
-                        placeholder="E-mail"
-                        name="email"
-                        id="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        />
-                </div>
-
-                <div className='input-field'>
-                <i className = 'fa-solid fa-lock'></i>
-                    <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    id="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    />
-                </div>
-
-                <div className='input-field'>
-                <i className ='fa-solid fa-phone'></i>
-                    <input
-                    type="text"
-                    placeholder="Phone"
-                    name="phone"
-                    id="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    />
-                </div>
-
-                <div className='input-field'>
-                <i className ='fa-solid fa-calendar'></i>
-                    <input
-                    type="text"
-                    placeholder="Age"
-                    name="age"
-                    id="age"
-                    value={formData.age}
-                    onChange={handleChange}
-                    />
-                </div>
-
-                <div className='btn-field'>
-                    <button type="submit">Register</button>
-                </div>
+          <div>
+            <div className='input-field'>
+              <i className='fa-solid fa-user'></i>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                id="username"
+                value={formData.username}
+                onChange={handleChange}
+              />
             </div>
+
+            <div className='input-field'>
+              <i className='fa-solid fa-envelope'></i>
+              <input
+                type="email"
+                placeholder="E-mail"
+                name="email"
+                id="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className='input-field'>
+              <i className='fa-solid fa-lock'></i>
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                id="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className='input-field'>
+              <i className='fa-solid fa-phone'></i>
+              <input
+                type="text"
+                placeholder="Phone"
+                name="phone"
+                id="phone"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className='input-field'>
+              <i className='fa-solid fa-calendar'></i>
+              <input
+                type="text"
+                placeholder="Age"
+                name="age"
+                id="age"
+                value={formData.age}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className='btn-field'>
+              <button type="submit">Register</button>
+            </div>
+          </div>
         </form>
-        </div>
+      </div>
     </div>
   );
 }

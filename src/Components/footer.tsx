@@ -8,7 +8,7 @@ export function Footer() {
             <div className="foot">
 
                 <div className="box1">
-                    <h1 className="judul">Sunibpolis</h1>
+                    <h1 className="title">Sunibpolis</h1>
                 </div>
 
                 <div className="box2">

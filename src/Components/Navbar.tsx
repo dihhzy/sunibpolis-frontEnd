@@ -29,11 +29,13 @@ export function Navbar() {
                             Sunibpolis News
                         </Nav.Link>
                         <span className="mx-2 d-flex align-items-center"
-                            style={{ color: "rgb(245, 232, 199)" }}>
+                            style={{
+                                color: "rgb(245, 232, 199)", marginBottom: "4px", fontSize: "20px"
+                            }}>
                             |
                         </span>
                         <Nav.Link to="/register" as={NavLink}
-                            style={{ color: "rgb(245, 232, 199)" }}>
+                            style={{ color: "rgb(245, 232, 199)", paddingLeft: "0px" }}>
                             Register
                         </Nav.Link>
                         <Nav.Link to="/login" as={NavLink}>

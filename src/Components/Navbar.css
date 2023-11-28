@@ -1,6 +1,10 @@
 .nav-link {
     transition: color 0.3s;
-    margin-left: 20px;
+    margin-left: 15px;
+}
+
+.navbar>.container {
+    margin-right: 5px;
 }
 
 .nav-link:hover,
@@ -11,4 +15,18 @@
 .btn:hover {
     border-color: rgb(129, 143, 180);
     box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+}
+
+.navbar-toggler:hover {
+    color: rgb(43, 43, 90) !important;
+}
+
+button:not(:disabled) {
+    background: linear-gradient(to right, rgba(160, 166, 218, 0.5), rgba(81, 87, 136, 0.5));
+}
+
+@media (max-width: 768px) {
+    span.mx-2.d-flex.align-items-center {
+        display: none !important;
+    }
 }
