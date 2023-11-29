@@ -1,5 +1,5 @@
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 
 interface City {
     cityId: number;
@@ -8,27 +8,38 @@ interface City {
 
 export function City() {
     const [cityData, setCityData] = useState<City[]>([]);
+    const [selectedCity, setSelectedCity] = useState<number | null>(null);
 
     useEffect(() => {
         axios.get('https://localhost:7234/api/City')
             .then(response => {
-                // Extract data property from response (backend)
                 const responseData = response.data.data;
                 setCityData(responseData);
             })
             .catch(error => {
                 console.error('Error fetching city data:', error);
             });
-    }, []); // Empty dependency array (effect runs once when the component mounts)
+    }, []);
+
+    const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedCityId = parseInt(event.target.value, 10);
+        setSelectedCity(selectedCityId);
+    };
 
     return (
         <div>
-            <h2>City</h2>
-            <ul>
-                {Array.isArray(cityData) && cityData.map(city => (
-                    <li key={city.cityId}>{city.cityName}</li>
+            <select
+                id="select-city"
+                onChange={handleCityChange}
+                value={selectedCity || ''}
+            >
+                <option value="" disabled>Select a city</option>
+                {cityData.map(city => (
+                    <option key={city.cityId} value={city.cityId}>
+                        {city.cityName}
+                    </option>
                 ))}
-            </ul>
+            </select>
         </div>
     );
 }
