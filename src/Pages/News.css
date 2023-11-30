@@ -1,0 +1,51 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.judul-berita {
+    font-size: 55px;
+    color: black;
+    text-align: center;
+    margin: 1%;
+}
+
+.News {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;;
+}
+
+.gambarberita {
+    width: 270px;
+    height: 150px;
+    display: block;
+    border-radius: 5%;
+    image-resolution: from-image;
+    cursor: pointer;
+}
+
+.gambarberita:hover{
+    background: grey; /* Adjust the alpha value for the darkness */
+    opacity: 0.8; /* Initially invisible */
+    transition: opacity 0.3s ease;
+}
+
+.hedlineberita {
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+}
+
+.boxberita {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1%;
+}
+
+body {
+    background-color: #F5E8C7;
+}
+
