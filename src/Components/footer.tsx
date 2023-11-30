@@ -5,7 +5,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 export function Footer() {
     return (
-        <footer className="footer">
+    <footer className="footer">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
             <div className="foot">
 
                 <div className="box1">
@@ -29,6 +30,6 @@ export function Footer() {
             </div>
 
             <div className="box4"><p className="description">COPYRIGHT © 2023 SUNIBPOLIS. PT KEL SE NINE. All Right Reserved.</p></div>
-        </footer>
+    </footer>
     );
 }

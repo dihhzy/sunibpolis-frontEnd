@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 scroll-
+=======
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+>>>>>>> 3ac474700d8f789b20334961bc2e2c43b3c0d5ea
 
 .judul-berita {
-    font-size: 72px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 55px;
     color: black;
     text-align: center;
     margin: 1%;
@@ -16,18 +22,32 @@ scroll-
 }
 
 .gambarberita {
+<<<<<<< HEAD
     height: 22vh;
     margin: auto;
     display: block;
     border-radius: 20%;
     image-resolution: from-image;
     image-rendering: auto;
+=======
+    width: 270px;
+    height: 150px;
+    display: block;
+    border-radius: 5%;
+    image-resolution: from-image;
+    cursor: pointer;
+}
+
+.gambarberita:hover{
+    background: grey; /* Adjust the alpha value for the darkness */
+    opacity: 0.8; /* Initially invisible */
+    transition: opacity 0.3s ease;
+>>>>>>> 3ac474700d8f789b20334961bc2e2c43b3c0d5ea
 }
 
 .hedlineberita {
     text-decoration: none;
-    font-size: 24px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
     color: black;
 }
 
