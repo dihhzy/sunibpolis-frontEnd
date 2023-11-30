@@ -40,12 +40,12 @@ export function Login() {
                     <div>
                     <div className="input-field">
                         <i className='fa-solid fa-envelope'></i>
-                        <input type="text" placeholder="E-mail" id="Email" value={formData.email} onChange={handleInputChange} />
+                        <input type="text" placeholder="E-mail" id="email" name = "email" value={formData.email} onChange={handleInputChange} autoComplete="email"/>
                     </div>
 
                     <div className="input-field">
                         <i className='fa-solid fa-lock'></i>
-                        <input type="text" placeholder="Password" id="Password" value={formData.password} onChange={handleInputChange} />
+                        <input type="text" placeholder="Password" id="password" name = "password" value={formData.password} onChange={handleInputChange} autoComplete="current-password"/>
                     </div>
 
                     <div className="btn-field">
