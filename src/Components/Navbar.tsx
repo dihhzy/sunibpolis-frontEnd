@@ -18,7 +18,7 @@ export function Navbar() {
                         }}>
                         <Nav.Link to="/" as={NavLink}
                             style={{ color: "rgb(245, 232, 199)" }}>
-                            Home
+                            Movie
                         </Nav.Link>
                         <Nav.Link to="/myTicket" as={NavLink}
                             style={{ color: "rgb(245, 232, 199)" }}>
