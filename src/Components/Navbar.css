@@ -32,4 +32,5 @@ button:not(:disabled) {
     span.mx-2.d-flex.align-items-center {
         display: none !important;
     }
+
 }
