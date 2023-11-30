@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Container } from 'react-bootstrap';
-import { Footer } from './Components/footer';
+import { Footer } from './Components/Footer';
 import { Routes, Route } from "react-router-dom";
 import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
