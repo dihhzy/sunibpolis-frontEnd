@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-redeclare */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
