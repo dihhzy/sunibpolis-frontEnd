@@ -33,7 +33,7 @@ export function Movie() {
                 {movieData.map(movie => (
                     <div key={movie.movieId} className="movie-card">
                         <img src={movie.movieImg} alt={movie.movieName} />
-                        <h4>{movie.movieName}</h4>
+                        <p className='movie-title'><strong>{movie.movieName}</strong></p>
                     </div>
                 ))}
             </div>
