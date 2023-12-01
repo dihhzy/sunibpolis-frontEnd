@@ -1,6 +1,9 @@
 .nav-link {
     transition: color 0.3s;
     margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar>.container {
@@ -29,4 +32,5 @@ button:not(:disabled) {
     span.mx-2.d-flex.align-items-center {
         display: none !important;
     }
+
 }
