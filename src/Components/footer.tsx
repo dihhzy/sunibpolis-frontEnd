@@ -1,8 +1,15 @@
 import React from 'react';
 import './Footer.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { useNavigate } from 'react-router-dom';
 
 export function Footer() {
+    const navigate = useNavigate();
+
+    const redirectToPrivacy = () =>{
+        navigate('/privacynpolicy');
+    }
+
     return (
         <footer className="footer">
             <div className="foot">
@@ -14,14 +21,14 @@ export function Footer() {
                 <div className="box2">
                     <a href='#' className="ling">About</a>
                     <a href='#' className="ling">Privacy Policy</a>
-                    <a href='#' className="ling">Terms & Conditions</a>
+                    <a href='#' onClick={redirectToPrivacy} className="ling">Terms & Conditions</a>
                 </div>
 
                 <div className="box3">
                     <ul className='sosial'>
-                        <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
-                        <li><a href="#"><i className="fa-brands fa-instagram"></i></a></li>
-                        <li><a href="#"><i className="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com"><i className="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com"><i className="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com"><i className="fa-brands fa-facebook"></i></a></li>
                     </ul>
                 </div>
 
