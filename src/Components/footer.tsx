@@ -1,6 +1,8 @@
 import React from 'react';
 import './Footer.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { NavLink } from "react-router-dom"
+import Nav from 'react-bootstrap/esm/Nav';
 import { useNavigate } from 'react-router-dom';
 
 export function Footer() {
@@ -14,6 +16,10 @@ export function Footer() {
         navigate('/termsncondition')
     }
 
+    const redirectToAbout = () =>{
+        navigate('/about')
+    }
+
     return (
         <footer>
             <div className="foot">
@@ -23,7 +29,7 @@ export function Footer() {
                 </div>
 
                 <div className="box2">
-                    <a href='#' className="ling">About</a>
+                    <a href='#' onClick={redirectToAbout} className="ling">About</a>
                     <a href='#' onClick={redirectToPrivacy} className="ling">Privacy Policy</a>
                     <a href='#' onClick={redirectToTerm} className="ling">Terms & Conditions</a>
                 </div>
