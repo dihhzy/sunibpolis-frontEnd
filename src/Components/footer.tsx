@@ -20,8 +20,8 @@ export function Footer() {
 
                 <div className="box2">
                     <a href='#' className="ling">About</a>
-                    <a href='#' className="ling">Privacy Policy</a>
-                    <a href='#' onClick={redirectToPrivacy} className="ling">Terms & Conditions</a>
+                    <a href='#' onClick={redirectToPrivacy} className="ling">Privacy Policy</a>
+                    <a href='#' className="ling">Terms & Conditions</a>
                 </div>
 
                 <div className="box3">
