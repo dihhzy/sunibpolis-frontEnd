@@ -29,7 +29,7 @@ export function TermsnCondition(){
                 <p>Your use of the Website is also governed by our Privacy Policy. By using the Website, you consent to the practices described in the Privacy Policy.</p>
                 <h4><b>6. Modifications</b></h4>
                 <p>We reserve the right to modify or discontinue the Website or any features at any time without notice. We are not liable for any modification, suspension, or discontinuation of the Website.</p>
-                <h5><b>We reserve the right to modify or discontinue the Website or any features at any time without notice. We are not liable for any modification, suspension, or discontinuation of the Website.</b></h5>
+                <h4><b>7. Limitation of Liability</b></h4>
                 <p>To the fullest extent permitted by law, Sunibpolis shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your access to or use of the Website.</p>
                 <h4><b>8. Governing Law</b></h4>
                 <p>These Terms and Conditions are governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising under or in connection with these terms shall be subject to the exclusive jurisdiction of the Indonesian courts.</p>

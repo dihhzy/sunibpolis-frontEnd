@@ -1,0 +1,110 @@
+.container-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.container-about{
+    border: 0.3vw solid black;
+    width: 70vw;
+    margin-top: 8vw;
+    margin-left: 2vw;
+    border-radius: 5vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 5px 8px rgba(0, 0, 0, 0.3);
+}
+.judul{
+    font-size: 4vw;
+    color: rgb(227, 101, 29);
+    font-weight: 400;
+}
+p.deskripsi{
+    line-height: 1.5;
+    font-size: 1.1vw;
+    .container-wrapper{
+    display: flex;
+    justify-content: center;
+}
+.container-about{
+    border: 0.3vw solid black;
+    width: 70vw;
+    margin-top: 9vw;
+    margin-left: 2vw;
+    border-radius: 5vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 5px 8px rgba(0, 0, 0, 0.3);
+}
+.judul{
+    font-size: 4vw;
+    color: rgb(227, 101, 29);
+    font-weight: 400;
+}
+p.deskripsi{
+    line-height: 1.5;
+    font-size: 1vw;
+}
+p.deskripsi br{
+    margin: 2em 0;
+}
+.container-about:hover{
+    background-color: #d0b997;
+}
+@media (max-width: 768px){
+    .container-wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .container-about{
+        border: 0.3vw solid black;
+        width: 70vw;
+        height: 60vw;
+        margin-top: 9vw;
+        margin-left: 2vw;
+        border-radius: 5vw;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 5px 8px rgba(0, 0, 0, 0.3);
+    }
+    .judul{
+        font-size: 5vw;
+        color: rgb(227, 101, 29);
+        font-weight: 400;
+    }
+    p.deskripsi{
+        line-height: 1.5;
+        font-size: 1.8vw;
+        margin: 2em 0;
+    }
+    .container-about:hover{
+        background-color: #d0b997;
+    }
+}
+}
+
+.container-about:hover{
+    background-color: #d0b997;
+}
+@media (max-width: 800px){
+    .container-wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .container-about{
+        border: 0.3vw solid black;
+        width: 70vw;
+        height: 60vw;
+        margin-top: 9vw;
+        margin-left: 2vw;
+        border-radius: 5vw;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 5px 8px rgba(0, 0, 0, 0.3);
+    }
+    .judul{
+        font-size: 5vw;
+        color: rgb(227, 101, 29);
+        font-weight: 400;
+    }
+    p.deskripsi{
+        line-height: 1.5;
+        font-size: 1.8vw;
+    }
+    p.deskripsi br{
+        margin: 2em 0;
+    }
+    .container-about:hover{
+        background-color: #d0b997;
+    }
+}
