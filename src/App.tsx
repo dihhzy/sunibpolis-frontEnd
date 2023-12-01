@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Container className="mb-4 p-0 m-0 w-100">
+      <Container className="mb-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/myTicket" element={<MyTicket />} />

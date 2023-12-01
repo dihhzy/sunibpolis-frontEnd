@@ -38,10 +38,10 @@ export function Movie() {
             <div className="movie-grid">
                 {movieData.map(movie => (
                     <div key={movie.movieId} className="movie-card">
-                        <img 
-                        onClick={() => navigateToMoviePage(movie.movieId)}
-                        src={movie.movieImg} 
-                        alt={movie.movieName} />
+                        <img
+                            onClick={() => navigateToMoviePage(movie.movieId)}
+                            src={movie.movieImg}
+                            alt={movie.movieName} />
                         <p className='movie-title'><strong>{movie.movieName}</strong></p>
                     </div>
                 ))}
