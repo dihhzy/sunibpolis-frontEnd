@@ -3,10 +3,21 @@ import './Footer.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { NavLink } from "react-router-dom"
 import Nav from 'react-bootstrap/esm/Nav';
+import { useNavigate } from 'react-router-dom';
 
 export function Footer() {
+    const navigate = useNavigate();
+
+    const redirectToPrivacy = () =>{
+        navigate('/privacynpolicy');
+    }
+
+    const redirectToTerm = () =>{
+        navigate('/termsncondition')
+    }
+
     return (
-        <footer className="footer">
+        <footer>
             <div className="foot">
 
                 <div className="box1">
@@ -14,18 +25,23 @@ export function Footer() {
                 </div>
 
                 <div className="box2">
+
                     <Nav.Link as={NavLink} to="/about" className="ling">
                         <a href="#" className='ling'>About</a>
                     </Nav.Link>
                     <a href='#' className="ling">Privacy Policy</a>
                     <a href='#' className="ling">Terms & Conditions</a>
+
+                    <a href='#' className="ling">About</a>
+                    <a href='#' onClick={redirectToPrivacy} className="ling">Privacy Policy</a>
+                    <a href='#' onClick={redirectToTerm} className="ling">Terms & Conditions</a>
                 </div>
 
                 <div className="box3">
                     <ul className='sosial'>
-                        <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
-                        <li><a href="#"><i className="fa-brands fa-instagram"></i></a></li>
-                        <li><a href="#"><i className="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com"><i className="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com"><i className="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com"><i className="fa-brands fa-facebook"></i></a></li>
                     </ul>
                 </div>
 

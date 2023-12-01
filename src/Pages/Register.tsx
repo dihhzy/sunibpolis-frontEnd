@@ -50,6 +50,7 @@ export function Register() {
                 id="username"
                 value={formData.username}
                 onChange={handleChange}
+                autoComplete="username"
               />
             </div>
 
@@ -62,6 +63,7 @@ export function Register() {
                 id="email"
                 value={formData.email}
                 onChange={handleChange}
+                autoComplete="email"
               />
             </div>
 
@@ -74,6 +76,7 @@ export function Register() {
                 id="password"
                 value={formData.password}
                 onChange={handleChange}
+                autoComplete="current-password"
               />
             </div>
 
@@ -86,6 +89,7 @@ export function Register() {
                 id="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                autoComplete="phone"
               />
             </div>
 
@@ -98,6 +102,7 @@ export function Register() {
                 id="age"
                 value={formData.age}
                 onChange={handleChange}
+                autoComplete="age"
               />
             </div>
 
