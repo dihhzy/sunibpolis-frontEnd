@@ -1,3 +1,4 @@
+import { CinemaLocation } from "../Components/CinemaLocation";
 import { City } from "../Components/City";
 import { Movie } from "../Components/Movie";
 
