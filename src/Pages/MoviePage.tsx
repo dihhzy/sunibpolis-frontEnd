@@ -42,6 +42,38 @@ export function MoviePage() {
         }
     }, [movieId]);
 
+    interface Theatre {
+        theaterId: number;
+        theaterType: string;
+        theaterName: string;
+        ticketPrice: number;
+        movie: {
+            movieId: number;
+            movieName: string;
+        };
+        cinemaLocation: {
+            cinemaLocationId: number;
+            cinemaLocationName: string;
+            cityId: number;
+        };
+    }
+    
+    const [theatreData, setTheatreData] = useState<Theatre[]>([]);
+    
+    useEffect(() => {
+        axios.get('https://localhost:7234/api/Theater')
+            .then(response => {
+                const responseData = response.data.data;
+                console.log('Theatre Data:', responseData);
+                setTheatreData(responseData);
+            })
+            .catch(error => {
+                console.error('Error fetching theatre data:', error);
+            });
+    }, []);
+
+    const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie.movieId === selectedMovie.movieId): [];
+
     return (
 
         <div>
@@ -85,6 +117,26 @@ export function MoviePage() {
 
             <div className='vertical-line'></div>
 
+
+            
+            <div className='show-time-container'>
+
+            <div className="">
+                {filteredTheatreData.map(theatre => (
+                    <div className="" key={theatre.theaterId}>
+                        <p className=''>
+                            <strong>
+                                {theatre.cinemaLocation.cinemaLocationName} {theatre.theaterName} {theatre.movie.movieName}
+                            </strong>
+                        </p>
+                    </div>
+                ))}
+            </div>
+
+            </div>
+
         </div>
     );
 }
+// nanti loop semua nama mall yang ada movieIdnya
+// didalem loopnya ada theatrenya yang ada movieidnya
