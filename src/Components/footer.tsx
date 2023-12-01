@@ -16,6 +16,10 @@ export function Footer() {
         navigate('/termsncondition')
     }
 
+    const redirectToAbout = () =>{
+        navigate('/about')
+    }
+
     return (
         <footer>
             <div className="foot">
@@ -25,14 +29,7 @@ export function Footer() {
                 </div>
 
                 <div className="box2">
-
-                    <Nav.Link as={NavLink} to="/about" className="ling">
-                        <a href="#" className='ling'>About</a>
-                    </Nav.Link>
-                    <a href='#' className="ling">Privacy Policy</a>
-                    <a href='#' className="ling">Terms & Conditions</a>
-
-                    <a href='#' className="ling">About</a>
+                    <a href='#' onClick={redirectToAbout} className="ling">About</a>
                     <a href='#' onClick={redirectToPrivacy} className="ling">Privacy Policy</a>
                     <a href='#' onClick={redirectToTerm} className="ling">Terms & Conditions</a>
                 </div>
