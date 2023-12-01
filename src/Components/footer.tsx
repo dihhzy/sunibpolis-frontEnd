@@ -10,6 +10,10 @@ export function Footer() {
         navigate('/privacynpolicy');
     }
 
+    const redirectToTerm = () =>{
+        navigate('/termsncondition')
+    }
+
     return (
         <footer className="footer">
             <div className="foot">
@@ -21,7 +25,7 @@ export function Footer() {
                 <div className="box2">
                     <a href='#' className="ling">About</a>
                     <a href='#' onClick={redirectToPrivacy} className="ling">Privacy Policy</a>
-                    <a href='#' className="ling">Terms & Conditions</a>
+                    <a href='#' onClick={redirectToTerm} className="ling">Terms & Conditions</a>
                 </div>
 
                 <div className="box3">
