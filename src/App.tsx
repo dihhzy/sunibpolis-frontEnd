@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Container } from 'react-bootstrap';
-import { Footer } from './Components/footer';
+import { Footer } from './Components/Footer';
+import { PrivacynPolicy } from './Pages/PrivactnPolicy';
 import { Routes, Route } from "react-router-dom";
 import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
         </Routes>
       </Container>
       <Footer />
