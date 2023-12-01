@@ -15,7 +15,7 @@ export function Footer() {
     }
 
     return (
-        <footer className="footer">
+        <footer>
             <div className="foot">
 
                 <div className="box1">
