@@ -10,6 +10,7 @@ import { MyTicket } from './Pages/MyTicket';
 import { News } from './Pages/News';
 import { Register } from './Pages/Register';
 import { Login } from './Pages/Login';
+import { TermsnCondition } from './Pages/TermsnCondition';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
+          <Route path="/termsncondition" element={<TermsnCondition />} />
         </Routes>
       </Container>
       <Footer />
