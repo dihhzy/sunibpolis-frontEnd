@@ -9,6 +9,7 @@ import { MyTicket } from './Pages/MyTicket';
 import { News } from './Pages/News';
 import { Register } from './Pages/Register';
 import { Login } from './Pages/Login';
+import { AboutUs } from './Pages/About';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Container>
       <Footer />

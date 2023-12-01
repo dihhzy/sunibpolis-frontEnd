@@ -1,6 +1,8 @@
 import React from 'react';
 import './Footer.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { NavLink } from "react-router-dom"
+import Nav from 'react-bootstrap/esm/Nav';
 
 export function Footer() {
     return (
@@ -12,7 +14,9 @@ export function Footer() {
                 </div>
 
                 <div className="box2">
-                    <a href='#' className="ling">About</a>
+                    <Nav.Link as={NavLink} to="/about" className="ling">
+                        <a href="#" className='ling'>About</a>
+                    </Nav.Link>
                     <a href='#' className="ling">Privacy Policy</a>
                     <a href='#' className="ling">Terms & Conditions</a>
                 </div>
