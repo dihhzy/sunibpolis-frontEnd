@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { CinemaLocation } from "../Components/CinemaLocation";
 import { City } from "../Components/City";
-import { Movie } from "../Components/Movie";
+import { Movie } from "./Movie";
 
 export function Home() {
     return (
