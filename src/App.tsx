@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Container } from 'react-bootstrap';
-import { Footer } from './Components/footer';
+import { Footer } from './Components/Footer';
 import { Routes, Route } from "react-router-dom";
 import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
@@ -27,9 +27,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/moviePage" element={<MoviePage />} />
           <Route path="/moviePage/:movieId" element={<MoviePage />} />
-          <Route path="/privacynpolicy" element={<PrivacynPolicy/>} />
-          <Route path="/termsncondition" element={<TermsnCondition/>} />
-          <Route path="/about" element={<AboutUs/>} />
+          <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
+          <Route path="/termsncondition" element={<TermsnCondition />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Container>
       <Footer />

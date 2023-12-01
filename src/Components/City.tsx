@@ -32,6 +32,15 @@ export function City() {
                 id="select-city"
                 onChange={handleCityChange}
                 value={selectedCity || ''}
+                style={{
+                    padding: '8px',
+                    fontSize: '16px',
+                    borderRadius: '20px ',
+                    border: '3px solid rgb(129, 143, 180)',
+                    width: '200px',
+                    backgroundColor: 'rgb(43, 43, 90)',
+                    color: 'white'
+                }}
             >
                 <option value="" disabled>Select a city</option>
                 {cityData.map(city => (

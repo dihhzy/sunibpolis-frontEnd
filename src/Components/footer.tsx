@@ -16,7 +16,7 @@ export function Footer() {
         navigate('/termsncondition')
     }
 
-    const redirectToAbout = () =>{
+    const redirectToAbout = () => {
         navigate('/about')
     }
 
