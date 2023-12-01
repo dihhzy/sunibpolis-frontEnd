@@ -8,7 +8,6 @@ export function Navbar() {
             style={{
                 backgroundColor: "rgb(54, 48, 98)",
             }}>
-            <Container>
                 <NavbarNav.Toggle aria-controls="responsive-navbar-nav" />
                 <NavbarNav.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto"
@@ -38,8 +37,8 @@ export function Navbar() {
                             style={{ color: "rgb(245, 232, 199)", paddingLeft: "0px" }}>
                             Register
                         </Nav.Link>
-                        <Nav.Link to="/login" as={NavLink}>
-                            <Button className="d-flex align-items-center"
+                        <Nav.Link to="/login" as={NavLink} className="d-flex align-items-center justify-content-center">
+                            <Button className="d-flex align-items-center justify-content-center"
                                 style={{
                                     fontSize: "18px",
                                     height: "30px",
@@ -50,14 +49,13 @@ export function Navbar() {
                                     color: "rgb(245, 232, 199)",
                                     display: "flex",
                                     justifyContent: "center",
-                                    padding: "2px 12px 5px 12px"
+                                    padding: "3px 12px 5px 12px"
                                 }}>
                                 Login
                             </Button>
                         </Nav.Link>
                     </Nav>
                 </NavbarNav.Collapse>
-            </Container>
         </NavbarNav >
     )
 }
