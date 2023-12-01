@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 export function Footer() {
     return (
-        <footer className="footer">
+        <footer>
             <div className="foot">
 
                 <div className="box1">
