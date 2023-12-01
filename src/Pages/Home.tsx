@@ -6,8 +6,8 @@ export function Home() {
     return (
         <>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <City />
                 <h1 style={{ margin: '0 auto' }}>Movie</h1>
+                <City />
             </div>
             <div>
                 <Movie />

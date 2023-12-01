@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom';
 export function Footer() {
     const navigate = useNavigate();
 
-    const redirectToPrivacy = () =>{
+    const redirectToPrivacy = () => {
         navigate('/privacynpolicy');
     }
 
-    const redirectToTerm = () =>{
+    const redirectToTerm = () => {
         navigate('/termsncondition')
     }
 
