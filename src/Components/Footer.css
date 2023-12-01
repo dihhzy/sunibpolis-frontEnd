@@ -1,28 +1,26 @@
-.footer {
-  font-size: 12px;
+footer {
+  padding: 0;
+  margin: 0;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
+  align-items: baseline;
   background-color: #363062;
   width: 100%;
   bottom: 0;
-  position: fixed;
-  padding-bottom: 0%;
-  margin-bottom: 0%;
+  position: relative;
 }
 
 .foot {
   background-color: #363062;
-  width: 100%;
-  height: 5vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding-top: 3vh;
 }
 
 .title {
-  font-size: 42px;
+  font-size: 2.7rem;
   color: #F5E8C7;
 }
 
@@ -34,30 +32,23 @@
 
 .sosial {
   color: #F5E8C7;
+  font-size: 1.1rem;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem 0 3rem 0;
 }
 
 .box1 {
-  background-color: #363062;
-  padding-top: 3vh;
   width: 100%;
-  height: 80px;
   text-align: center;
 }
 
 .box2 {
-  background-color: #363062;
-  padding-top: 4.2vh;
   width: 100%;
-  height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  text-align: center;
 }
 
 .box2 a {
@@ -69,22 +60,23 @@
 }
 
 .box3 {
-  padding-top: 4vh;
-  background-color: #363062;
   width: 100%;
-  height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   text-align: center;
   list-style: none;
 }
+.box3 ul{
+  margin: 0;
+  padding: 0;
+}
 
 .box3 li {
   display: flex;
   flex-direction: row;
-  margin: 0 10px;
   list-style: none;
+  margin: 0 1.5vh;
 }
 
 .box3 a {
@@ -93,12 +85,11 @@
 }
 
 .box3 a i {
-  font-size: 2.3rem;
+  font-size: 1.8rem;
   transition: color .4s ease;
 }
 
 .box3 a:hover i {
-  font-size: 2.3rem;
   color: #eaeaea;
 }
 
@@ -108,9 +99,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding-bottom: 0%;
-  margin-bottom: 0%;
-  padding-top: 2vh;
+  font-size: 0.7rem;
 }
 
 .description {
@@ -122,27 +111,13 @@
 @media (max-width: 768px) {
   
   .box2 {
-    background-color: #363062;
-    padding-top: 4.2vh;
-    width: 100%;
-    height: 80px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    font-size: 1.2rem;
   }
 
   .box3 {
-    padding-top: 4vh;
-    background-color: #363062;
-    width: 100%;
-    height: 80px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    text-align: center;
-    list-style: none;
   }
 
   .box3 li {
@@ -151,7 +126,8 @@
   }
 
   .box3 a i {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    margin: 1vh 0;
   }
 
   .sosial {
@@ -159,16 +135,47 @@
     flex-direction: column;
     font-size: 1.2rem;
   }
+}
 
-  .description {
-    padding: 2px;
-    margin: 2px;
-  }
-  .box4 {
-    width: 100%;
+@media (max-width: 375px) {
+  
+  footer{
     display: flex;
     flex-direction: column;
-    text-align: center;
-    padding-top: 2vh;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .foot{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+
+  .box2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .box3 {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .box3 li {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .box3 a i {
+    font-size: 1.4rem;
+  }
+
+  .sosial {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
   }
 }
