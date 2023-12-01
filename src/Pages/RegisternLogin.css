@@ -1,9 +1,3 @@
-.container{
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-}
-
 .form-box-register {
     width: 90%;
     max-width: 65vh;
