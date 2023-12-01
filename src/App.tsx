@@ -3,11 +3,7 @@ import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Container } from 'react-bootstrap';
 import { Footer } from './Components/Footer';
-<<<<<<< HEAD
 import { PrivacynPolicy } from './Pages/PrivacynPolicy';
-=======
-import { PrivacynPolicy } from './Pages/PrivactnPolicy
->>>>>>> refs/remotes/origin/main
 import { Routes, Route } from "react-router-dom";
 import { Home } from './Pages/Home';
 import { MyTicket } from './Pages/MyTicket';
@@ -16,8 +12,7 @@ import { Register } from './Pages/Register';
 import { Login } from './Pages/Login';
 import { MoviePage } from './Components/MoviePage';
 import { TermsnCondition } from './Pages/TermsnCondition';
-
-
+import { AboutUs } from './Pages/About';
 
 function App() {
   return (
@@ -31,10 +26,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<AboutUs />} />
-
           <Route path="/moviePage" element={<MoviePage />} />
           <Route path="/moviePage/:movieId" element={<MoviePage />} />
-
           <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
           <Route path="/termsncondition" element={<TermsnCondition />} />
         </Routes>
