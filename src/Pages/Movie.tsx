@@ -41,9 +41,8 @@ export function Movie() {
                         <img
                             onClick={() => navigateToMoviePage(movie.movieId)}
                             src={movie.movieImg}
-                            alt={movie.movieName}
-                        />
-                        <h4>{movie.movieName}</h4>
+                            alt={movie.movieName} />
+                        <p className='movie-title'><strong>{movie.movieName}</strong></p>
                     </div>
                 ))}
             </div>

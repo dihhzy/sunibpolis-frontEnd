@@ -9,7 +9,7 @@ import { MyTicket } from './Pages/MyTicket';
 import { News } from './Pages/News';
 import { Register } from './Pages/Register';
 import { Login } from './Pages/Login';
-import { MoviePage } from './Components/MoviePage';
+import { MoviePage } from './Pages/MoviePage';
 import { PrivacynPolicy } from './Pages/PrivacynPolicy';
 import { TermsnCondition } from './Pages/TermsnCondition';
 import { AboutUs } from './Pages/About';
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Container className="mb-4">
+      <Container className="mb-4 min-vh-100">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/myTicket" element={<MyTicket />} />

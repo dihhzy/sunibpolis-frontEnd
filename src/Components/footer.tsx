@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import './Footer.css';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -22,8 +21,8 @@ export function Footer() {
     }
 
     return (
-    <footer className="footer">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <footer className="footer">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
 
             <div className="foot">
 
@@ -48,6 +47,6 @@ export function Footer() {
             </div>
 
             <div className="box4"><p className="description">COPYRIGHT © 2023 SUNIBPOLIS. PT KEL SE NINE. All Right Reserved.</p></div>
-    </footer>
+        </footer>
     );
 }
