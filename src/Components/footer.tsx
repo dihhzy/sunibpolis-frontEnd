@@ -26,9 +26,7 @@ export function Footer() {
 
                 <div className="box2">
 
-                    <Nav.Link as={NavLink} to="/about" className="ling">
-                        <a href="#" className='ling'>About</a>
-                    </Nav.Link>
+                    <a href="#" className='ling'>About</a>
                     <a href='#' className="ling">Privacy Policy</a>
                     <a href='#' className="ling">Terms & Conditions</a>
 
