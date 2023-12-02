@@ -88,15 +88,6 @@ export function MoviePage() {
         }
     }, [movieId]);
 
-<<<<<<< HEAD
-    const filteredTheatreData = selectedMovie
-        ? theatreData.filter((theatre) => theatre.movie?.movieId === selectedMovie.movieId)
-        : [];
-
-    const filteredMovieShowTimeData = filteredTheatreData.flatMap((theatre) =>
-        movieShowTimeData.filter((showTime) => showTime.theatre?.theatreId === theatre.theaterId)
-    );
-=======
     interface Theatre {
         theaterId: number;
         theaterType: string;
@@ -113,7 +104,6 @@ export function MoviePage() {
         };
     }
     
-    const [theatreData, setTheatreData] = useState<Theatre[]>([]);
     
     useEffect(() => {
         axios.get('https://localhost:7234/api/Theater')
@@ -143,7 +133,6 @@ export function MoviePage() {
 
     }
     
-    const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
     
     useEffect(() => {
         axios.get('https://localhost:7234/api/MovieShowTime')
@@ -163,7 +152,6 @@ export function MoviePage() {
 
     const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
 
->>>>>>> 7250ce918314c115463a157bba508eb3d9bb874e
 
     console.log('Filtered Theatre Data:', filteredTheatreData);
     console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
@@ -206,31 +194,6 @@ export function MoviePage() {
                     )}
                 </div>
             </div>
-<<<<<<< HEAD
-            <br />
-            <br />
-            <div className="vertical-line"></div>
-            <div className="show-time-container">
-                <div className="">
-                    {filteredTheatreData.map((theatre, index) => (
-                        <div key={theatre.theaterId}>
-                            {index > 0 && <div className="vertical-line"></div>}
-                            <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
-                            <h4>{theatre.theaterName}</h4>
-                            {/* Display movie times under each theater */}
-                            <ul>
-                                {filteredMovieShowTimeData
-                                    .filter((showTime) => showTime.theatre?.theatreId === theatre.theaterId)
-                                    .map((filteredShowTime) => (
-                                        <li key={filteredShowTime.movieShowTimeId}>
-                                            {new Date(filteredShowTime.showTime).toLocaleString()}
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-=======
 
             <br /><br />
 
@@ -266,10 +229,10 @@ export function MoviePage() {
                 ) : (
                     <p>No theaters available for the selected movie.</p>
                 )}
+                <div className='vertical-line'></div>
             </div>
 
                 
->>>>>>> 7250ce918314c115463a157bba508eb3d9bb874e
             </div>
         </div>
     );
