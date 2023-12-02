@@ -42,6 +42,8 @@ export function MoviePage() {
                 const foundMovie = movieData.find(
                     (movie) => movie.movieId === parseInt(movieId || '', 10)
                 );
+                
+                console.log('Movie Data:', movieData);
 
                 if (foundMovie) {
                     setSelectedMovie(foundMovie);
@@ -74,9 +76,57 @@ export function MoviePage() {
             });
     }, []);
 
+<<<<<<< HEAD
     const filteredTheatreData = selectedMovie ? theatreData.filter(theatre => theatre.movie.movieId === selectedMovie.movieId) : [];
+=======
+    const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie?.movieId  === selectedMovie.movieId): [];
+    
+    interface MovieShowTime {
+        movieShowTimeId : number;
+        ShowTime : string;
+        theatre: {
+            theatreId : number;
+            theaterType : string;
+            theaterName : string;
+            ticketPrice : number;
+            movieId : number;
+            cinemaLocationId: number;
+        };
+>>>>>>> 1b1c9e8592bbbd31056af24aeca7cbbb9dc1649e
 
-    return (
+    }
+    
+    const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
+    
+    useEffect(() => {
+        axios.get('https://localhost:7234/api/MovieShowTime')
+            .then(response => {
+                const responseData = response.data.data;
+                console.log('Movie Show Time Data:', responseData);
+                setMovieShowTimeData(responseData);
+            })
+            .catch(error => {
+                console.error('Error fetching theatre data:', error);
+            });
+    }, []);
+
+    const movieIds = movieShowTimeData.map((movieShowTime) => movieShowTime.theatre && movieShowTime.theatre.movieId);
+    const validMovieIds = movieIds.filter((movieId) => movieId !== undefined);
+    console.log('movieshowtime validMovieIds', validMovieIds);
+
+    console.log('movieshowtime movieIds', movieIds);
+
+
+    const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
+
+    console.log('selectedMovie.movieId:', selectedMovie?.movieId);
+    console.log('movieShowTimeData:', movieShowTimeData);
+
+
+    console.log('Filtered Theatre Data:', filteredTheatreData);
+    console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
+
+    return (   
 
         <div>
             <div className="container">
@@ -124,6 +174,7 @@ export function MoviePage() {
             <div className='show-time-container'>
 
                 <div className="">
+<<<<<<< HEAD
                     {filteredTheatreData.map(theatre => (
                         <div className="" key={theatre.theaterId}>
                             <p className=''>
@@ -135,7 +186,20 @@ export function MoviePage() {
                     ))}
                 </div>
 
+=======
+                    {filteredTheatreData.map((theatre, index) => (
+                        <div key={theatre.theaterId}>
+                            {index > 0 && <div className='vertical-line'></div>}
+                            <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
+                            <h4>{theatre.theaterName}</h4>
+                        </div>
+                    ))}
+                </div>
+                
+>>>>>>> 1b1c9e8592bbbd31056af24aeca7cbbb9dc1649e
             </div>
+            
+            <div className='vertical-line'></div>
 
         </div>
     );
