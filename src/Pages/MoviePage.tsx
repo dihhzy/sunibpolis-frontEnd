@@ -14,7 +14,7 @@ interface Movie {
     movieImg: string;
 }
 
-interface Theatre {
+interface Theater {
     theaterId: number;
     theaterType: string;
     theaterName: string;
@@ -48,7 +48,7 @@ interface MovieShowTime {
 export function MoviePage() {
     const { movieId } = useParams<{ movieId: string | undefined }>();
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-    const [theatreData, setTheatreData] = useState<Theatre[]>([]);
+    const [theatreData, setTheatreData] = useState<Theater[]>([]);
     const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
 
     useEffect(() => {
@@ -65,7 +65,7 @@ export function MoviePage() {
                 }
 
                 const theatreResponse = await axios.get('https://localhost:7234/api/Theater');
-                const theatreData: Theatre[] = theatreResponse.data.data;
+                const theatreData: Theater[] = theatreResponse.data.data;
                 setTheatreData(theatreData);
 
                 const movieShowTimeResponse = await axios.get('https://localhost:7234/api/MovieShowTime');
@@ -123,10 +123,14 @@ export function MoviePage() {
     // console.log('movieShowTimeData:', movieShowTimeData);
 
     const filteredMovieShowTimeData = movieShowTimeData.filter((movieShowTime) => {
-        return movieShowTime.theater?.movieId === selectedMovie?.movieId
-    })
+        return (
+            movieShowTime.theater?.movieId === selectedMovie?.movieId &&
+            movieShowTime.theater?.theaterId === (filteredTheatreData.length > 0 ? filteredTheatreData[0].theaterId : 0)
+        );
+    });
     
-    console.log('test: ', filteredMovieShowTimeData);
+    
+    console.log('filteredMovieShowTimeData: ', filteredMovieShowTimeData);
     
 
     const filteredMovieShowTimeIds = movieShowTimeData.map(movieShowTime => movieShowTime.theater?.movieId)
@@ -135,7 +139,7 @@ export function MoviePage() {
   
 
 
-    // console.log('Filtered Theatre Data:', filteredTheatreData);
+    console.log('Filtered Theatre Data:', filteredTheatreData);
     // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
 
     return (
@@ -196,14 +200,14 @@ export function MoviePage() {
                         </div>
 
                         <div className='button-field'>
-                        {filteredMovieShowTimeData
-                            .filter(movieShowTime => movieShowTime.theater)
-                            .map(movieShowTime => (
-                            <div className="" key={movieShowTime.movieShowTimeId}>
-                                <button type="submit">
-                                <a href="#">{movieShowTime.showTime}</a>
-                                </button>
-                            </div>
+                        {filteredMovieShowTimeData.map(movieShowTime => (
+                                <div className="" key={movieShowTime.movieShowTimeId}>
+                                    <button type="submit">
+                                    <a href="#">
+                                        {new Date(movieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    </a>
+                                    </button>
+                                </div>
                             ))}
                         </div>
                     </div>
