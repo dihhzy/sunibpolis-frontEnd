@@ -1,5 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 export function MyTicket() {
+    const navigate = useNavigate();
+    const redirectToSeat = () =>{
+        navigate('/seat');
+    }
     return (
-        <h1>My Ticket</h1>
+        <div>
+                    <h1>My Ticket</h1>
+                <button onClick={redirectToSeat}>Seat</button>
+        </div>
+
+
     )
 }

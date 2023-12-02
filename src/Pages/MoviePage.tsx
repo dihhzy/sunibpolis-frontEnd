@@ -89,7 +89,24 @@ export function MoviePage() {
             fetchData();
         }
     }, [movieId]);
-      
+
+    interface Theatre {
+        theaterId: number;
+        theaterType: string;
+        theaterName: string;
+        ticketPrice: number;
+        movie: {
+            movieId: number;
+            movieName: string;
+        };
+        cinemaLocation: {
+            cinemaLocationId: number;
+            cinemaLocationName: string;
+            cityId: number;
+        };
+    }
+    
+    
     useEffect(() => {
         axios.get('https://localhost:7234/api/Theater')
             .then(response => {
@@ -137,7 +154,6 @@ export function MoviePage() {
 
     // console.log('Movie Show Time IDs:', filteredMovieShowTimeIds);
   
-
 
     console.log('Filtered Theatre Data:', filteredTheatreData);
     // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);

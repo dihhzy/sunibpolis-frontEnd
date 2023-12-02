@@ -41,12 +41,12 @@ export function Movie() {
     return (
         <div className="movie-container">
 
-            <h1>=================== Now Showing ===================</h1>
+            <h1>================ Now Showing ================</h1>
             <br />
 
             <div className="movie-grid">
 
-            
+
 
                 {filteredNowShowing.map(movie => (
                     <div key={movie.movieId} className="movie-card">
@@ -60,12 +60,12 @@ export function Movie() {
 
             </div>
 
-                    <br />
+            <br />
 
-                <h1>=================== Coming Soon ===================</h1>
+            <h1>=================== Coming Soon ===================</h1>
 
-                <br />
-            
+            <br />
+
             <div className='movie-grid'>
 
                 {filteredComingSoon.map(movie => (
