@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import './MoviePage.css'
+import './MoviePage.css';
 
 interface Movie {
     movieId: number;
@@ -30,28 +30,56 @@ interface Theatre {
     };
 }
 
+interface MovieShowTime {
+    movieShowTimeId: number;
+    showTime: string;
+    theatre: {
+        theatreId: number;
+        theaterType: string;
+        theaterName: string;
+        ticketPrice: number;
+        movieId: number;
+        cinemaLocationId: number;
+    };
+}
+
 export function MoviePage() {
     const { movieId } = useParams<{ movieId: string | undefined }>();
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+    const [theatreData, setTheatreData] = useState<Theatre[]>([]);
+    const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://localhost:7234/api/Movie');
-                const movieData: Movie[] = response.data.data;
-                const foundMovie = movieData.find(
-                    (movie) => movie.movieId === parseInt(movieId || '', 10)
-                );
-                
-                console.log('Movie Data:', movieData);
+                const movieResponse = await axios.get('https://localhost:7234/api/Movie');
+                const movieData: Movie[] = movieResponse.data.data;
+                const foundMovie = movieData.find((movie) => movie.movieId === parseInt(movieId || '', 10));
 
                 if (foundMovie) {
                     setSelectedMovie(foundMovie);
                 } else {
                     console.error(`Movie with ID ${movieId} not found.`);
                 }
+
+                const theatreResponse = await axios.get('https://localhost:7234/api/Theater');
+                const theatreData: Theatre[] = theatreResponse.data.data;
+                setTheatreData(theatreData);
+
+                const movieShowTimeResponse = await axios.get('https://localhost:7234/api/MovieShowTime');
+                console.log('Movie Show Time API Response:', movieShowTimeResponse.data);
+
+                const movieShowTimeData: MovieShowTime[] = movieShowTimeResponse.data.data;
+                setMovieShowTimeData(movieShowTimeData);
+
+                console.log('Movie Data:', movieData);
+                console.log('Selected Movie:', foundMovie);
+                console.log('Theatre Data:', theatreData);
+                console.log('Movie Show Time Data:', movieShowTimeData);
+                console.log('Filtered Theatre Data:', filteredTheatreData);
+                console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
             } catch (error) {
-                console.error('Error fetching movie data:', error);
+                console.error('Error fetching data:', error);
             }
         };
 
@@ -60,77 +88,20 @@ export function MoviePage() {
         }
     }, [movieId]);
 
+    const filteredTheatreData = selectedMovie
+        ? theatreData.filter((theatre) => theatre.movie?.movieId === selectedMovie.movieId)
+        : [];
 
-
-    const [theatreData, setTheatreData] = useState<Theatre[]>([]);
-
-    useEffect(() => {
-        axios.get('https://localhost:7234/api/Theater')
-            .then(response => {
-                const responseData = response.data.data;
-                console.log('Theatre Data:', responseData);
-                setTheatreData(responseData);
-            })
-            .catch(error => {
-                console.error('Error fetching theatre data:', error);
-            });
-    }, []);
-
-<<<<<<< HEAD
-    const filteredTheatreData = selectedMovie ? theatreData.filter(theatre => theatre.movie.movieId === selectedMovie.movieId) : [];
-=======
-    const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie?.movieId  === selectedMovie.movieId): [];
-    
-    interface MovieShowTime {
-        movieShowTimeId : number;
-        ShowTime : string;
-        theatre: {
-            theatreId : number;
-            theaterType : string;
-            theaterName : string;
-            ticketPrice : number;
-            movieId : number;
-            cinemaLocationId: number;
-        };
->>>>>>> 1b1c9e8592bbbd31056af24aeca7cbbb9dc1649e
-
-    }
-    
-    const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
-    
-    useEffect(() => {
-        axios.get('https://localhost:7234/api/MovieShowTime')
-            .then(response => {
-                const responseData = response.data.data;
-                console.log('Movie Show Time Data:', responseData);
-                setMovieShowTimeData(responseData);
-            })
-            .catch(error => {
-                console.error('Error fetching theatre data:', error);
-            });
-    }, []);
-
-    const movieIds = movieShowTimeData.map((movieShowTime) => movieShowTime.theatre && movieShowTime.theatre.movieId);
-    const validMovieIds = movieIds.filter((movieId) => movieId !== undefined);
-    console.log('movieshowtime validMovieIds', validMovieIds);
-
-    console.log('movieshowtime movieIds', movieIds);
-
-
-    const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
-
-    console.log('selectedMovie.movieId:', selectedMovie?.movieId);
-    console.log('movieShowTimeData:', movieShowTimeData);
-
+    const filteredMovieShowTimeData = filteredTheatreData.flatMap((theatre) =>
+        movieShowTimeData.filter((showTime) => showTime.theatre?.theatreId === theatre.theaterId)
+    );
 
     console.log('Filtered Theatre Data:', filteredTheatreData);
     console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
 
-    return (   
-
+    return (
         <div>
             <div className="container">
-
                 <div className="Movie-Pics">
                     {selectedMovie && (
                         <div className="movie-card">
@@ -138,71 +109,58 @@ export function MoviePage() {
                         </div>
                     )}
                 </div>
-
                 <div className="Movie-Desc">
-
                     {selectedMovie && (
-                        <div className='desc-movie'>
+                        <div className="desc-movie">
                             <h2>{selectedMovie.movieName}</h2>
                             <br />
                             <ul>
-                                <li>Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieGenre}</li>
+                                <li>
+                                    Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{' '}
+                                    {selectedMovie.movieGenre}
+                                </li>
                                 <li>Censor Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieAgeRating}</li>
-                                <li>Duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieDurationTime} minutes</li>
+                                <li>
+                                    Duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:{' '}
+                                    {selectedMovie.movieDurationTime} minutes
+                                </li>
                             </ul>
                         </div>
                     )}
-
-                    <br /><br />
-
+                    <br />
+                    <br />
                     {selectedMovie && (
                         <div>
                             <h2>Sinopsis</h2>
                             <p>{selectedMovie.movieDescription}</p>
                         </div>
                     )}
-
                 </div>
             </div>
-
-            <br /><br />
-
-            <div className='vertical-line'></div>
-
-
-
-            <div className='show-time-container'>
-
+            <br />
+            <br />
+            <div className="vertical-line"></div>
+            <div className="show-time-container">
                 <div className="">
-<<<<<<< HEAD
-                    {filteredTheatreData.map(theatre => (
-                        <div className="" key={theatre.theaterId}>
-                            <p className=''>
-                                <strong>
-                                    {theatre.cinemaLocation.cinemaLocationName} {theatre.theaterName} {theatre.movie.movieName}
-                                </strong>
-                            </p>
-                        </div>
-                    ))}
-                </div>
-
-=======
                     {filteredTheatreData.map((theatre, index) => (
                         <div key={theatre.theaterId}>
-                            {index > 0 && <div className='vertical-line'></div>}
+                            {index > 0 && <div className="vertical-line"></div>}
                             <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
                             <h4>{theatre.theaterName}</h4>
+                            {/* Display movie times under each theater */}
+                            <ul>
+                                {filteredMovieShowTimeData
+                                    .filter((showTime) => showTime.theatre?.theatreId === theatre.theaterId)
+                                    .map((filteredShowTime) => (
+                                        <li key={filteredShowTime.movieShowTimeId}>
+                                            {new Date(filteredShowTime.showTime).toLocaleString()}
+                                        </li>
+                                    ))}
+                            </ul>
                         </div>
                     ))}
                 </div>
-                
->>>>>>> 1b1c9e8592bbbd31056af24aeca7cbbb9dc1649e
             </div>
-            
-            <div className='vertical-line'></div>
-
         </div>
     );
 }
-// nanti loop semua nama mall yang ada movieIdnya
-// didalem loopnya ada theatrenya yang ada movieidnya
