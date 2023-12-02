@@ -11,7 +11,6 @@ import { News } from './Pages/News';
 import { Register } from './Pages/Register';
 import { Login } from './Pages/Login';
 import { MoviePage } from './Pages/MoviePage';
-import { PrivacynPolicy } from './Pages/PrivacynPolicy';
 import { TermsnCondition } from './Pages/TermsnCondition';
 import { AboutUs } from './Pages/About';
 import { Seat } from './Pages/Seat';

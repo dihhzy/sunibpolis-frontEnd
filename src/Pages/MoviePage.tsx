@@ -219,7 +219,7 @@ export function MoviePage() {
                         {filteredMovieShowTimeData.map(movieShowTime => (
                                 <div className="" key={movieShowTime.movieShowTimeId}>
                                     <button type="submit">
-                                    <a href="#">
+                                    <a href="/Seat.tsx">
                                         {new Date(movieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                     </a>
                                     </button>
