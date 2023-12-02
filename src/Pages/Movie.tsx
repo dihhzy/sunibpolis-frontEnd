@@ -33,17 +33,48 @@ export function Movie() {
             });
     }, []);
 
+
+    const filteredNowShowing = movieData.filter(movie => movie.movieType === 'Now Showing');
+
+    const filteredComingSoon = movieData.filter(movie => movie.movieType === 'Coming Soon');
+
     return (
         <div className="movie-container">
+
+            <h1>================ Now Showing ================</h1>
+            <br />
+
             <div className="movie-grid">
-                {movieData.map(movie => (
+
+
+
+                {filteredNowShowing.map(movie => (
                     <div key={movie.movieId} className="movie-card">
                         <img
                             onClick={() => navigateToMoviePage(movie.movieId)}
                             src={movie.movieImg}
-                            alt={movie.movieName}
-                        />
-                        <h4>{movie.movieName}</h4>
+                            alt={movie.movieName} />
+                        <p className='movie-title'><strong>{movie.movieName}</strong></p>
+                    </div>
+                ))}
+
+            </div>
+
+            <br />
+
+            <h1>=================== Coming Soon ===================</h1>
+
+            <br />
+
+            <div className='movie-grid'>
+
+                {filteredComingSoon.map(movie => (
+                    <div key={movie.movieId} className="movie-card">
+                        <img
+                            onClick={() => navigateToMoviePage(movie.movieId)}
+                            src={movie.movieImg}
+                            alt={movie.movieName} />
+                        <p className='movie-title'><strong>{movie.movieName}</strong></p>
                     </div>
                 ))}
             </div>

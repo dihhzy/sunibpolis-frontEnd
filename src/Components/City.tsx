@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Dropdown } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './City.css';
 
 interface City {
     cityId: number;
@@ -21,27 +24,28 @@ export function City() {
             });
     }, []);
 
-    const handleCityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedCityId = parseInt(event.target.value, 10);
-        setSelectedCity(selectedCityId);
+    const handleCitySelect = (cityId: number) => {
+        setSelectedCity(cityId);
     };
 
     return (
         <div>
-            <select
-                id="select-city"
-                onChange={handleCityChange}
-                value={selectedCity || ''}
+            <Dropdown
+                onSelect={(eventKey) => handleCitySelect(Number(eventKey))}
+                className="d-inline-block"
             >
-                <option value="" disabled>Select a city</option>
-                {cityData.map(city => (
-                    <option key={city.cityId} value={city.cityId}>
-                        {city.cityName}
-                    </option>
-                ))}
-            </select>
+                <Dropdown.Toggle variant="success" id="dropdown-city" className="city-dropdown">
+                    {selectedCity ? `City: ${selectedCity}` : 'Select a city'}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    {cityData.map(city => (
+                        <Dropdown.Item key={city.cityId} eventKey={city.cityId}>
+                            {city.cityName}
+                        </Dropdown.Item>
+                    ))}
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
     );
 }
-
-
