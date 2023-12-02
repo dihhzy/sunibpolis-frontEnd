@@ -8,7 +8,6 @@ export function MyTicket() {
     return (
         <div>
                     <h1>My Ticket</h1>
-                <button onClick={redirectToSeat}>Seat</button>
         </div>
 
 

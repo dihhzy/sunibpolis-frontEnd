@@ -14,7 +14,7 @@ interface Movie {
     movieImg: string;
 }
 
-interface Theatre {
+interface Theater {
     theaterId: number;
     theaterType: string;
     theaterName: string;
@@ -33,20 +33,22 @@ interface Theatre {
 interface MovieShowTime {
     movieShowTimeId: number;
     showTime: string;
-    theatre: {
-        theatreId: number;
+    theater: {
+        theaterId: number;
         theaterType: string;
         theaterName: string;
         ticketPrice: number;
-        movieId: number;
+        cinemaLocation: null;
         cinemaLocationId: number;
+        movie: null;
+        movieId: number;
     };
 }
 
 export function MoviePage() {
     const { movieId } = useParams<{ movieId: string | undefined }>();
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-    const [theatreData, setTheatreData] = useState<Theatre[]>([]);
+    const [theatreData, setTheatreData] = useState<Theater[]>([]);
     const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
 
     useEffect(() => {
@@ -63,21 +65,21 @@ export function MoviePage() {
                 }
 
                 const theatreResponse = await axios.get('https://localhost:7234/api/Theater');
-                const theatreData: Theatre[] = theatreResponse.data.data;
+                const theatreData: Theater[] = theatreResponse.data.data;
                 setTheatreData(theatreData);
 
                 const movieShowTimeResponse = await axios.get('https://localhost:7234/api/MovieShowTime');
-                console.log('Movie Show Time API Response:', movieShowTimeResponse.data);
+                // console.log('Movie Show Time API Response:', movieShowTimeResponse.data);
 
                 const movieShowTimeData: MovieShowTime[] = movieShowTimeResponse.data.data;
                 setMovieShowTimeData(movieShowTimeData);
 
-                console.log('Movie Data:', movieData);
-                console.log('Selected Movie:', foundMovie);
-                console.log('Theatre Data:', theatreData);
-                console.log('Movie Show Time Data:', movieShowTimeData);
-                console.log('Filtered Theatre Data:', filteredTheatreData);
-                console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
+                // console.log('Movie Data:', movieData);
+                // console.log('Selected Movie:', foundMovie);
+                // console.log('Theatre Data:', theatreData);
+                // console.log('Movie Show Time Data:', movieShowTimeData);
+                // console.log('Filtered Theatre Data:', filteredTheatreData);
+                // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -88,15 +90,6 @@ export function MoviePage() {
         }
     }, [movieId]);
 
-<<<<<<< HEAD
-    const filteredTheatreData = selectedMovie
-        ? theatreData.filter((theatre) => theatre.movie?.movieId === selectedMovie.movieId)
-        : [];
-
-    const filteredMovieShowTimeData = filteredTheatreData.flatMap((theatre) =>
-        movieShowTimeData.filter((showTime) => showTime.theatre?.theatreId === theatre.theaterId)
-    );
-=======
     interface Theatre {
         theaterId: number;
         theaterType: string;
@@ -118,7 +111,7 @@ export function MoviePage() {
         axios.get('https://localhost:7234/api/Theater')
             .then(response => {
                 const responseData = response.data.data;
-                console.log('Theatre Data:', responseData);
+                // console.log('Theatre Data:', responseData);
                 setTheatreData(responseData);
             })
             .catch(error => {
@@ -128,21 +121,8 @@ export function MoviePage() {
 
     const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie?.movieId  === selectedMovie.movieId): [];
     
-    interface MovieShowTime {
-        movieShowTimeId : number;
-        ShowTime : string;
-        theatre: {
-            theatreId : number;
-            theaterType : string;
-            theaterName : string;
-            ticketPrice : number;
-            movieId : number;
-            cinemaLocationId: number;
-        };
+    
 
-    }
-    
-    
     useEffect(() => {
         axios.get('https://localhost:7234/api/MovieShowTime')
             .then(response => {
@@ -156,15 +136,27 @@ export function MoviePage() {
     }, []);
 
 
-    console.log('selectedMovie.movieId:', selectedMovie?.movieId);
-    console.log('movieShowTimeData:', movieShowTimeData);
+    // console.log('selectedMovie.movieId:', selectedMovie?.movieId);
+    // console.log('movieShowTimeData:', movieShowTimeData);
 
-    const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
+    const filteredMovieShowTimeData = movieShowTimeData.filter((movieShowTime) => {
+        return (
+            movieShowTime.theater?.movieId === selectedMovie?.movieId &&
+            movieShowTime.theater?.theaterId === (filteredTheatreData.length > 0 ? filteredTheatreData[0].theaterId : 0)
+        );
+    });
+    
+    
+    console.log('filteredMovieShowTimeData: ', filteredMovieShowTimeData);
+    
 
->>>>>>> 71684abf66dd22096e1706400147ee4fd9577ee4
+    const filteredMovieShowTimeIds = movieShowTimeData.map(movieShowTime => movieShowTime.theater?.movieId)
+
+    // console.log('Movie Show Time IDs:', filteredMovieShowTimeIds);
+  
 
     console.log('Filtered Theatre Data:', filteredTheatreData);
-    console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
+    // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
 
     return (
         <div>
@@ -204,31 +196,6 @@ export function MoviePage() {
                     )}
                 </div>
             </div>
-<<<<<<< HEAD
-            <br />
-            <br />
-            <div className="vertical-line"></div>
-            <div className="show-time-container">
-                <div className="">
-                    {filteredTheatreData.map((theatre, index) => (
-                        <div key={theatre.theaterId}>
-                            {index > 0 && <div className="vertical-line"></div>}
-                            <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
-                            <h4>{theatre.theaterName}</h4>
-                            {/* Display movie times under each theater */}
-                            <ul>
-                                {filteredMovieShowTimeData
-                                    .filter((showTime) => showTime.theatre?.theatreId === theatre.theaterId)
-                                    .map((filteredShowTime) => (
-                                        <li key={filteredShowTime.movieShowTimeId}>
-                                            {new Date(filteredShowTime.showTime).toLocaleString()}
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-=======
 
             <br /><br />
 
@@ -249,14 +216,14 @@ export function MoviePage() {
                         </div>
 
                         <div className='button-field'>
-                        {filteredMovieShowTimeData
-                            .filter(movieShowTime => movieShowTime.theatre)
-                            .map(movieShowTime => (
-                            <div className="" key={movieShowTime.movieShowTimeId}>
-                                <button type="submit">
-                                <a href="#">{movieShowTime.ShowTime}</a>
-                                </button>
-                            </div>
+                        {filteredMovieShowTimeData.map(movieShowTime => (
+                                <div className="" key={movieShowTime.movieShowTimeId}>
+                                    <button type="submit">
+                                    <a href="/Seat.tsx">
+                                        {new Date(movieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                    </a>
+                                    </button>
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -268,7 +235,6 @@ export function MoviePage() {
             </div>
 
                 
->>>>>>> 71684abf66dd22096e1706400147ee4fd9577ee4
             </div>
         </div>
     );
