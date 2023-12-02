@@ -104,17 +104,11 @@ export function MoviePage() {
             });
     }, []);
 
-    const movieIds = movieShowTimeData.map((movieShowTime) => movieShowTime.theatre && movieShowTime.theatre.movieId);
-    const validMovieIds = movieIds.filter((movieId) => movieId !== undefined);
-    console.log('movieshowtime validMovieIds', validMovieIds);
-
-    console.log('movieshowtime movieIds', movieIds);
-
-
-    const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
 
     console.log('selectedMovie.movieId:', selectedMovie?.movieId);
     console.log('movieShowTimeData:', movieShowTimeData);
+
+    const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
 
 
     console.log('Filtered Theatre Data:', filteredTheatreData);
@@ -167,15 +161,34 @@ export function MoviePage() {
             
             <div className='show-time-container'>
 
-                <div className="">
-                    {filteredTheatreData.map((theatre, index) => (
-                        <div key={theatre.theaterId}>
-                            {index > 0 && <div className='vertical-line'></div>}
-                            <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
-                            <h4>{theatre.theaterName}</h4>
+            <div className="">
+                {filteredTheatreData.length > 0 ? (
+                    filteredTheatreData.map((theatre, index) => (
+                    <div key={theatre.theaterId}>
+                        {index > 0 && <div className='vertical-line'></div>}
+                        <div className='show-time-desc'>
+                        <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
+                        <h4>{theatre.theaterName}</h4>
                         </div>
-                    ))}
-                </div>
+
+                        <div className='button-field'>
+                        {filteredMovieShowTimeData
+                            .filter(movieShowTime => movieShowTime.theatre)
+                            .map(movieShowTime => (
+                            <div className="" key={movieShowTime.movieShowTimeId}>
+                                <button type="submit">
+                                <a href="#">{movieShowTime.ShowTime}</a>
+                                </button>
+                            </div>
+                            ))}
+                        </div>
+                    </div>
+                    ))
+                ) : (
+                    <p>No theaters available for the selected movie.</p>
+                )}
+            </div>
+
                 
             </div>
             
