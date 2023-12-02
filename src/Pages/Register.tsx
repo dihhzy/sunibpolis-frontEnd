@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import './RegisternLogin.css';
 import '@fortawesome/fontawesome-free/css/all.css';
+import axios from 'axios';
 
 export function Register() {
   const [formData, setFormData] = useState({
@@ -21,18 +22,30 @@ export function Register() {
   };
 
   // Explicitly specify the type for the event parameter
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add logic to handle form submission, e.g., send data to a server
-    console.log('Form submitted:', formData);
-    // Reset form after submission
-    setFormData({
-      username: '',
-      email: '',
-      password: '',
-      phone: '',
-      age: '',
-    });
+    try {
+      const response = await axios.post('https://localhost:7234/api/User/api/User/register', {
+        userName: formData.username,
+        userEmail: formData.email,
+        userPhoneNumber: formData.phone,
+        userPassword: formData.password,
+        userAge: parseInt(formData.age, 10),
+      });
+
+      console.log('Registration successful:', response.data);
+
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        phone: '',
+        age: '',
+      });
+    } catch (error) {
+      console.error('Error during registration:');
+      // Handle error appropriately, e.g., show an error message to the user
+    }
   };
 
   return (
