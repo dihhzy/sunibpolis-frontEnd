@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Navbar } from './Components/Navbar';
 import { Container } from 'react-bootstrap';
+import {PrivacynPolicy } from './Pages/PrivacynPolicy';
 import { Footer } from './Components/footer';
 import { Routes, Route } from "react-router-dom";
 import { Home } from './Pages/Home';
@@ -13,6 +14,7 @@ import { MoviePage } from './Pages/MoviePage';
 import { PrivacynPolicy } from './Pages/PrivacynPolicy';
 import { TermsnCondition } from './Pages/TermsnCondition';
 import { AboutUs } from './Pages/About';
+import { Seat } from './Pages/Seat';
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/moviePage" element={<MoviePage />} />
           <Route path="/moviePage/:movieId" element={<MoviePage />} />
+
+          <Route path="/seat" element={<Seat/>} />
+
           <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
           <Route path="/termsncondition" element={<TermsnCondition />} />
           <Route path="/about" element={<AboutUs />} />
