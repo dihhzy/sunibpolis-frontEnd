@@ -43,7 +43,6 @@ export function Footer() {
                         <li><a href="https://www.facebook.com"><i className="fa-brands fa-facebook"></i></a></li>
                     </ul>
                 </div>
-
             </div>
 
             <div className="box4"><p className="description">COPYRIGHT © 2023 SUNIBPOLIS. PT KEL SE NINE. All Right Reserved.</p></div>
