@@ -33,13 +33,15 @@ interface Theatre {
 interface MovieShowTime {
     movieShowTimeId: number;
     showTime: string;
-    theatre: {
-        theatreId: number;
+    theater: {
+        theaterId: number;
         theaterType: string;
         theaterName: string;
         ticketPrice: number;
-        movieId: number;
+        cinemaLocation: null;
         cinemaLocationId: number;
+        movie: null;
+        movieId: number;
     };
 }
 
@@ -67,17 +69,17 @@ export function MoviePage() {
                 setTheatreData(theatreData);
 
                 const movieShowTimeResponse = await axios.get('https://localhost:7234/api/MovieShowTime');
-                console.log('Movie Show Time API Response:', movieShowTimeResponse.data);
+                // console.log('Movie Show Time API Response:', movieShowTimeResponse.data);
 
                 const movieShowTimeData: MovieShowTime[] = movieShowTimeResponse.data.data;
                 setMovieShowTimeData(movieShowTimeData);
 
-                console.log('Movie Data:', movieData);
-                console.log('Selected Movie:', foundMovie);
-                console.log('Theatre Data:', theatreData);
-                console.log('Movie Show Time Data:', movieShowTimeData);
-                console.log('Filtered Theatre Data:', filteredTheatreData);
-                console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
+                // console.log('Movie Data:', movieData);
+                // console.log('Selected Movie:', foundMovie);
+                // console.log('Theatre Data:', theatreData);
+                // console.log('Movie Show Time Data:', movieShowTimeData);
+                // console.log('Filtered Theatre Data:', filteredTheatreData);
+                // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -87,29 +89,12 @@ export function MoviePage() {
             fetchData();
         }
     }, [movieId]);
-
-    interface Theatre {
-        theaterId: number;
-        theaterType: string;
-        theaterName: string;
-        ticketPrice: number;
-        movie: {
-            movieId: number;
-            movieName: string;
-        };
-        cinemaLocation: {
-            cinemaLocationId: number;
-            cinemaLocationName: string;
-            cityId: number;
-        };
-    }
-    
-    
+      
     useEffect(() => {
         axios.get('https://localhost:7234/api/Theater')
             .then(response => {
                 const responseData = response.data.data;
-                console.log('Theatre Data:', responseData);
+                // console.log('Theatre Data:', responseData);
                 setTheatreData(responseData);
             })
             .catch(error => {
@@ -119,21 +104,8 @@ export function MoviePage() {
 
     const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie?.movieId  === selectedMovie.movieId): [];
     
-    interface MovieShowTime {
-        movieShowTimeId : number;
-        ShowTime : string;
-        theatre: {
-            theatreId : number;
-            theaterType : string;
-            theaterName : string;
-            ticketPrice : number;
-            movieId : number;
-            cinemaLocationId: number;
-        };
+    
 
-    }
-    
-    
     useEffect(() => {
         axios.get('https://localhost:7234/api/MovieShowTime')
             .then(response => {
@@ -147,14 +119,24 @@ export function MoviePage() {
     }, []);
 
 
-    console.log('selectedMovie.movieId:', selectedMovie?.movieId);
-    console.log('movieShowTimeData:', movieShowTimeData);
+    // console.log('selectedMovie.movieId:', selectedMovie?.movieId);
+    // console.log('movieShowTimeData:', movieShowTimeData);
 
-    const filteredMovieShowTimeData = selectedMovie? movieShowTimeData.filter(movieShowTime => movieShowTime.theatre?.movieId  === selectedMovie.movieId): [];
+    const filteredMovieShowTimeData = movieShowTimeData.filter((movieShowTime) => {
+        return movieShowTime.theater?.movieId === selectedMovie?.movieId
+    })
+    
+    console.log('test: ', filteredMovieShowTimeData);
+    
+
+    const filteredMovieShowTimeIds = movieShowTimeData.map(movieShowTime => movieShowTime.theater?.movieId)
+
+    // console.log('Movie Show Time IDs:', filteredMovieShowTimeIds);
+  
 
 
-    console.log('Filtered Theatre Data:', filteredTheatreData);
-    console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
+    // console.log('Filtered Theatre Data:', filteredTheatreData);
+    // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
 
     return (
         <div>
@@ -215,11 +197,11 @@ export function MoviePage() {
 
                         <div className='button-field'>
                         {filteredMovieShowTimeData
-                            .filter(movieShowTime => movieShowTime.theatre)
+                            .filter(movieShowTime => movieShowTime.theater)
                             .map(movieShowTime => (
                             <div className="" key={movieShowTime.movieShowTimeId}>
                                 <button type="submit">
-                                <a href="#">{movieShowTime.ShowTime}</a>
+                                <a href="#">{movieShowTime.showTime}</a>
                                 </button>
                             </div>
                             ))}
