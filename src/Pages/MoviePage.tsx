@@ -14,6 +14,22 @@ interface Movie {
     movieImg: string;
 }
 
+interface Theatre {
+    theaterId: number;
+    theaterType: string;
+    theaterName: string;
+    ticketPrice: number;
+    movie: {
+        movieId: number;
+        movieName: string;
+    };
+    cinemaLocation: {
+        cinemaLocationId: number;
+        cinemaLocationName: string;
+        cityId: number;
+    };
+}
+
 export function MoviePage() {
     const { movieId } = useParams<{ movieId: string | undefined }>();
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
@@ -42,24 +58,10 @@ export function MoviePage() {
         }
     }, [movieId]);
 
-    interface Theatre {
-        theaterId: number;
-        theaterType: string;
-        theaterName: string;
-        ticketPrice: number;
-        movie: {
-            movieId: number;
-            movieName: string;
-        };
-        cinemaLocation: {
-            cinemaLocationId: number;
-            cinemaLocationName: string;
-            cityId: number;
-        };
-    }
-    
+
+
     const [theatreData, setTheatreData] = useState<Theatre[]>([]);
-    
+
     useEffect(() => {
         axios.get('https://localhost:7234/api/Theater')
             .then(response => {
@@ -72,7 +74,7 @@ export function MoviePage() {
             });
     }, []);
 
-    const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie.movieId === selectedMovie.movieId): [];
+    const filteredTheatreData = selectedMovie ? theatreData.filter(theatre => theatre.movie.movieId === selectedMovie.movieId) : [];
 
     return (
 
@@ -81,34 +83,34 @@ export function MoviePage() {
 
                 <div className="Movie-Pics">
                     {selectedMovie && (
-                            <div className="movie-card">
-                                <img src={selectedMovie.movieImg} alt={selectedMovie.movieName} />
-                            </div>
+                        <div className="movie-card">
+                            <img src={selectedMovie.movieImg} alt={selectedMovie.movieName} />
+                        </div>
                     )}
                 </div>
 
                 <div className="Movie-Desc">
 
-                        {selectedMovie && (
-                            <div className='desc-movie'>
-                                <h2>{selectedMovie.movieName}</h2>
-                                <br />
-                                <ul>
-                                    <li>Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieGenre}</li>
-                                    <li>Censor Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieAgeRating}</li>
-                                    <li>Duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieDurationTime} minutes</li>
-                                </ul>
-                            </div>
-                        )}
-                    
+                    {selectedMovie && (
+                        <div className='desc-movie'>
+                            <h2>{selectedMovie.movieName}</h2>
+                            <br />
+                            <ul>
+                                <li>Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieGenre}</li>
+                                <li>Censor Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieAgeRating}</li>
+                                <li>Duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {selectedMovie.movieDurationTime} minutes</li>
+                            </ul>
+                        </div>
+                    )}
+
                     <br /><br />
 
                     {selectedMovie && (
-                            <div>
-                                <h2>Sinopsis</h2>
-                                <p>{selectedMovie.movieDescription}</p>
-                            </div>
-                        )}
+                        <div>
+                            <h2>Sinopsis</h2>
+                            <p>{selectedMovie.movieDescription}</p>
+                        </div>
+                    )}
 
                 </div>
             </div>
@@ -118,20 +120,20 @@ export function MoviePage() {
             <div className='vertical-line'></div>
 
 
-            
+
             <div className='show-time-container'>
 
-            <div className="">
-                {filteredTheatreData.map(theatre => (
-                    <div className="" key={theatre.theaterId}>
-                        <p className=''>
-                            <strong>
-                                {theatre.cinemaLocation.cinemaLocationName} {theatre.theaterName} {theatre.movie.movieName}
-                            </strong>
-                        </p>
-                    </div>
-                ))}
-            </div>
+                <div className="">
+                    {filteredTheatreData.map(theatre => (
+                        <div className="" key={theatre.theaterId}>
+                            <p className=''>
+                                <strong>
+                                    {theatre.cinemaLocation.cinemaLocationName} {theatre.theaterName} {theatre.movie.movieName}
+                                </strong>
+                            </p>
+                        </div>
+                    ))}
+                </div>
 
             </div>
 
