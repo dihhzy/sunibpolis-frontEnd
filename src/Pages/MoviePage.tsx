@@ -128,7 +128,6 @@ export function MoviePage() {
         const theaterIds = filteredTheatreData.map(theater => theater.theaterId);
         return (
             movieShowTime.theater?.movieId === selectedMovie?.movieId &&
-            movieShowTime.theater?.theaterId === (filteredTheatreData.length > 0 ? filteredTheatreData[0].theaterId: 0 ) &&
             theaterIds.includes(movieShowTime.theater?.theaterId)
         );
     });
@@ -195,29 +194,32 @@ export function MoviePage() {
             <div className="">
                 {filteredTheatreData.length > 0 ? (
                     filteredTheatreData.map((theatre, index) => (
-                    <div key={theatre.theaterId}>
-                        {index > 0 && <div className='vertical-line'></div>}
-                        <div className='show-time-desc'>
-                        <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
-                        <h4>{theatre.theaterName}</h4>
-                        </div>
+                        <div key={theatre.theaterId}>
+                            {index > 0 && <div className='vertical-line'></div>}
+                            <div className='show-time-desc'>
+                                <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
+                                <h4>{theatre.theaterName}</h4>
+                            </div>
 
-                        <div className='button-field'>
-                        {filteredMovieShowTimeData.map(movieShowTime => (
-                                <div className="" key={movieShowTime.theater.theaterId}>
-                                    <button type="submit" onClick={() => navigateToSeat(movieShowTime.theater.theaterId)}>
-                                        {new Date(movieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                    </button>
-                                </div>
-                            ))}
+                            <div className='button-field'>
+                                {filteredMovieShowTimeData
+                                    .filter(movieShowTime => movieShowTime.theater.theaterId === theatre.theaterId)
+                                    .map(filteredMovieShowTime => (
+                                        <div className="" key={filteredMovieShowTime.theater.theaterId}>
+                                            <button type="submit" onClick={() => navigateToSeat(filteredMovieShowTime.theater.theaterId)}>
+                                                {new Date(filteredMovieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </button>
+                                        </div>
+                                    ))}
+                            </div>
                         </div>
-                    </div>
                     ))
                 ) : (
                     <p>No theaters available for the selected movie.</p>
                 )}
                 <div className='vertical-line'></div>
             </div>
+
 
                 
             </div>
