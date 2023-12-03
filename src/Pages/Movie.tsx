@@ -45,9 +45,6 @@ export function Movie() {
             <br />
 
             <div className="movie-grid">
-
-
-
                 {filteredNowShowing.map(movie => (
                     <div key={movie.movieId} className="movie-card">
                         <img

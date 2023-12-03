@@ -40,7 +40,7 @@ export function Login() {
 
         if (response.status === 200) {
             alert("Login Successful");
-            window.location.href = "/"
+            window.location.href = "/dashboard"
         } else if (response.status === 401) {
             alert("Login failed: Incorect email or password.");
         } else {
