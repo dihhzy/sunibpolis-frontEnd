@@ -45,12 +45,6 @@
     background-color: rgb(205, 24, 24);
 }
 
-.seat:nth-of-type(2){
-    margin-right: 18px;
-}
-.seat:nth-last-of-type(2){
-    margin-right: 18px;
-}
 .seat:not(.occupied):hover{
     cursor: pointer;
     transform: scale(1.2);
@@ -84,16 +78,18 @@
     margin: 15px 0;
     transform: rotateX(-45deg);
     box-shadow: 0 3px 10px rgba(255,255,255,0.75);
-
 }
 
 .isi{
     perspective: 1000px;
     margin-bottom: 10px;
+    align-items: center;
 }
+
 p.text{
     margin-top: 50px;
 }
+
 p.text span{
     color: rgb(213, 213, 35);
 }
