@@ -19,7 +19,7 @@ export function Movie() {
     const navigate = useNavigate();
 
     const navigateToMoviePage = (movieId: number) => {
-        navigate(`/moviePage/${movieId}`);
+        navigate(`/MoviePage/${movieId}`);
     };
 
     useEffect(() => {

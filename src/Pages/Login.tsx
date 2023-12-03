@@ -66,7 +66,7 @@ export function Login() {
 
                         <div className="input-field">
                             <i className='fa-solid fa-lock'></i>
-                            <input type="text" placeholder="Password" id="password" name="password" value={formData.password} onChange={handleInputChange} autoComplete="current-password" />
+                            <input type="password" placeholder="Password" id="password" name="password" value={formData.password} onChange={handleInputChange} autoComplete="current-password" />
                         </div>
 
                         <div className="btn-field">

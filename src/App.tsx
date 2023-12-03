@@ -28,9 +28,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/moviePage" element={<MoviePage />} />
           <Route path="/moviePage/:movieId" element={<MoviePage />} />
-
           <Route path="/seat" element={<Seat/>} />
-
+          <Route path="/seat/:theaterId" element={<Seat/>} />
           <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
           <Route path="/termsncondition" element={<TermsnCondition />} />
           <Route path="/about" element={<AboutUs />} />

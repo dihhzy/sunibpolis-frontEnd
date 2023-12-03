@@ -1,9 +1,85 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import './Seat.css';
+import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-interface SeatProps {}
+interface SeatProps {
+
+}
+
+
+interface MovieShowTime {
+    movieShowTimeId: number;
+    showTime: string;
+    theater: {
+        theaterId: number;
+        theaterType: string;
+        theaterName: string;
+        ticketPrice: number;
+        cinemaLocation: null;
+        cinemaLocationId: number;
+        movie: null;
+        movieId: number;
+    };
+}
+
+interface Seat{
+    seatId : number;
+    seatName : string;
+    seatNumber : number;
+    seatStatus : string;
+    theater :{
+        theaterId : number;
+    }
+}
 
 export function Seat(props: SeatProps): JSX.Element {
+
+    const [seatData, setSeatData] = useState<Seat[]>([]);
+    const [selectedMovieShowTime, setSelectedMovieShowTime] = useState<MovieShowTime | null>(null);
+    const { theaterId } = useParams<{ theaterId: string | undefined }>();
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const movieShowTimeResponse = await axios.get(`https://localhost:7234/api/MovieShowTime`);
+                const movieShowTimeData: MovieShowTime[] = movieShowTimeResponse.data.data;
+                const foundMovieShowTime = movieShowTimeData.find((MovieShowTime) => MovieShowTime.theater.theaterId === parseInt(theaterId || '', 10));
+
+                if (foundMovieShowTime) {
+                    setSelectedMovieShowTime(foundMovieShowTime);
+                } else {
+                    console.error(`Theater with ID ${theaterId} not found.`);
+                }
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        if (theaterId) {
+            fetchData();
+        }
+    }, [theaterId]);
+
+    console.log('theater id : ', selectedMovieShowTime?.theater?.theaterId);
+
+    useEffect(() => {
+        axios.get('https://localhost:7234/api/Seat')
+            .then(response => {
+                const responseData = response.data.data;
+                console.log('Theatre Data:', responseData);
+                setSeatData(responseData);
+            })
+            .catch(error => {
+                console.error('Error fetching theatre data:', error);
+            });
+    }, []);
+
+
+
+
   const [ticketPrice, setTicketPrice] = useState<number>(30000);
   const [selectedSeatsCount, setSelectedSeatsCount] = useState<number>(0);
 
@@ -26,7 +102,7 @@ export function Seat(props: SeatProps): JSX.Element {
             <ul className="showcase">
             <li>
                 <div className="seat"></div>
-                <small>N/A</small>
+                <small>Available</small>
             </li>
             <li>
                 <div className="seat selected"></div>
@@ -67,6 +143,13 @@ export function Seat(props: SeatProps): JSX.Element {
                     You have selected <span id="count">{selectedSeatsCount}</span> seats for a price of Rp.<span id="total">{selectedSeatsCount * ticketPrice}</span>
                 </p>
             </div>
+
+            <div className='button-field2'>
+                <button>
+                    Order
+                </button>
+            </div>
+            
     </div>
         
     );
