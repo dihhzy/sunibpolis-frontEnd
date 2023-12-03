@@ -16,6 +16,7 @@
     border-radius: 30px;
     margin-top: 2vh;
 }   
+
 .seat{
     background-color: #444451;
     height: 21px;
@@ -24,6 +25,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 } 
+
 .row .seat{
     background-color: #444451;
     height: 21px;
@@ -32,11 +34,10 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-.row{
+.isi .row{
+    justify-content: center;
     display: flex;
     flex-direction: row;
-    padding-top: 30px;
-    padding-left: 75px;
 }
 .seat.selected{
     background-color: rgb(163, 183, 99);
@@ -74,7 +75,7 @@
     background-color: #fff;
     color: white;
     height: 80px;
-    width: 100%;
+    width: 55vh;
     margin: 15px 0;
     transform: rotateX(-45deg);
     box-shadow: 0 3px 10px rgba(255,255,255,0.75);
