@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom';
 export function Footer() {
     const navigate = useNavigate();
 
+    const redirectToAbout = () => {
+        navigate('/about')
+    }
     const redirectToPrivacy = () => {
         navigate('/privacynpolicy');
     }
@@ -16,14 +19,8 @@ export function Footer() {
         navigate('/termsncondition')
     }
 
-    const redirectToAbout = () => {
-        navigate('/about')
-    }
-
     return (
-        <footer className="footer">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-
+        <footer>
             <div className="foot">
 
                 <div className="box1">
@@ -32,15 +29,7 @@ export function Footer() {
 
                 <div className="box2">
 
-
-                    <a href="#" className='ling'>About</a>
-                    <a href='#' className="ling">Privacy Policy</a>
-                    <a href='#' className="ling">Terms & Conditions</a>
-
-                    <a href='#' className="ling">About</a>
-
                     <a href='#' onClick={redirectToAbout} className="ling">About</a>
-
                     <a href='#' onClick={redirectToPrivacy} className="ling">Privacy Policy</a>
                     <a href='#' onClick={redirectToTerm} className="ling">Terms & Conditions</a>
                 </div>
@@ -52,6 +41,7 @@ export function Footer() {
                         <li><a href="https://www.facebook.com"><i className="fa-brands fa-facebook"></i></a></li>
                     </ul>
                 </div>
+
             </div>
 
             <div className="box4"><p className="description">COPYRIGHT © 2023 SUNIBPOLIS. PT KEL SE NINE. All Right Reserved.</p></div>

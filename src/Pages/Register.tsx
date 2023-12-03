@@ -12,7 +12,6 @@ export function Register() {
     age: '',
   });
 
-  // Explicitly specify the type for the event parameter
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -21,31 +20,41 @@ export function Register() {
     }));
   };
 
-  // Explicitly specify the type for the event parameter
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await axios.post('https://localhost:7234/api/User/api/User/register', {
-        userName: formData.username,
-        userEmail: formData.email,
-        userPhoneNumber: formData.phone,
-        userPassword: formData.password,
-        userAge: parseInt(formData.age, 10),
-      });
-
-      console.log('Registration successful:', response.data);
-
-      setFormData({
-        username: '',
-        email: '',
-        password: '',
-        phone: '',
-        age: '',
-      });
-    } catch (error) {
-      console.error('Error during registration:');
-      // Handle error appropriately, e.g., show an error message to the user
+    if (!formData.username || !formData.email || !formData.password || !formData.phone || !formData.age) {
+      alert("data tidak boleh kosong");
+      return
     }
+    const response = await axios.post('https://localhost:7234/api/User/api/User/register', {
+      userName: formData.username,
+      userEmail: formData.email,
+      userPhoneNumber: formData.phone,
+      userPassword: formData.password,
+      userAge: formData.age
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (response.status === 200) {
+      alert("Registration Successful");
+      window.location.href = "/"
+    } else if (response.status === 401) {
+      alert("Registration failed: Incorect email or password.");
+    } else {
+      alert("Registration Failed: Server error. Please try again later.");
+    }
+    alert("Registration Successful")
+
+    setFormData({
+      username: "",
+      email: "",
+      phone: "",
+      password: "",
+      age: ""
+    })
   };
 
   return (

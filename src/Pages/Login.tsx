@@ -12,45 +12,47 @@ export function Login() {
     const [formData, setFormData] = useState<LoginForm>({
         email: "",
         password: "",
-    });
+    })
+
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
-        });
-    };
+        })
+    }
+
     const handleLogin = async (e: FormEvent) => {
         e.preventDefault();
         if (!formData.email || !formData.password) {
             alert("email dan password tidak boleh kosong");
-            return;
+            return
         }
 
-        try {
-            const response = await axios.post('https://localhost:7234/api/User/api/User/login', {
-                email: formData.email,
-                password: formData.password,
-            }, {
-                headers: {
+        const response = await axios.post('https://localhost:7234/api/User/api/User/login', {
+            UserEmail: formData.email,
+            UserPassword: formData.password,
+        }, {
+            headers: {
                 'Content-Type': 'application/json'
             }
-            });
+        })
 
-            console.log("Login berhasil");
-            // If the login is successful, you can store the user's data or access token in localStorage or in a state management library like Redux
-            // Then, you can redirect the user to the desired page
-
-            console.log(response.data);
-        } catch (error) {
-            console.error(error);
+        if (response.status === 200) {
+            alert("Login Successful");
+            window.location.href = "/"
+        } else if (response.status === 401) {
+            alert("Login failed: Incorect email or password.");
+        } else {
+            alert("Login Failed: Server error. Please try again later.");
         }
+        alert("Login Successful")
 
         setFormData({
             email: "",
             password: "",
-        });
-    };
+        })
+    }
     return (
         <div className="container">
             <div className="form-box-login">
