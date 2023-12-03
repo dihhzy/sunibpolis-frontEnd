@@ -29,9 +29,14 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/moviePage" element={<MoviePage />} />
           <Route path="/moviePage/:movieId" element={<MoviePage />} />
+<<<<<<< HEAD
 
           <Route path="/seat" element={<Seat />} />
 
+=======
+          <Route path="/seat" element={<Seat/>} />
+          <Route path="/seat/:theaterId" element={<Seat/>} />
+>>>>>>> c92b185838ec7dbd8609285495f9287a7feb6d09
           <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
           <Route path="/termsncondition" element={<TermsnCondition />} />
           <Route path="/about" element={<AboutUs />} />
