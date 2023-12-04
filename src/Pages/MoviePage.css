@@ -18,6 +18,18 @@
     text-align: left;
 }
 
+.movie-page-card {
+    width: 40vh;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.movie-page-card img {
+    width: 100%;
+    height: 55vh;
+    border-radius: 20px;
+}
+
 .desc-movie {}
 
 .desc-movie ul {
@@ -52,7 +64,8 @@
 .button-field button {
     background: #363062;
     color: #eaeaea;
-    height: 3.6vh;
+    height: 5vh;
+    width: 5vw;
     border-radius: 10px;
     border: 0;
     outline: 0;
@@ -68,5 +81,5 @@
 }
 
 .button-field button:hover {
-    border: 2.5px solid black;
+    background-color: rgb(155, 60, 250);
 }

@@ -14,7 +14,6 @@ import { MoviePage } from './Pages/MoviePage';
 import { TermsnCondition } from './Pages/TermsnCondition';
 import { AboutUs } from './Pages/About';
 import { Seat } from './Pages/Seat';
-import { Dashboard } from './Pages/Dashboard';
 import { PaymentMethod } from './Pages/PaymentMethod';
 import { Transaction } from './Pages/Transaction';
 
@@ -31,14 +30,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/moviePage" element={<MoviePage />} />
           <Route path="/moviePage/:movieId" element={<MoviePage />} />
-          <Route path="/seat" element={<Seat/>} />
-          <Route path="/seat/:theaterId" element={<Seat/>} />
+          <Route path="/seat" element={<Seat />} />
+          <Route path="/seat/:theaterId" element={<Seat />} />
           <Route path="/privacynpolicy" element={<PrivacynPolicy />} />
           <Route path="/termsncondition" element={<TermsnCondition />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/paymentMethod" element={<PaymentMethod />} />
           <Route path="/transaction" element={<Transaction />} />
-          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Container>
       <Footer />

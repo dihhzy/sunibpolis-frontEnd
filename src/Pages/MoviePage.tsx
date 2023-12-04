@@ -149,7 +149,7 @@ export function MoviePage() {
             <div className="container">
                 <div className="Movie-Pics">
                     {selectedMovie && (
-                        <div className="movie-card">
+                        <div className="movie-page-card">
                             <img src={selectedMovie.movieImg} alt={selectedMovie.movieName} />
                         </div>
                     )}

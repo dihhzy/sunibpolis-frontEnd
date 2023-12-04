@@ -1,6 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+interface User {
+    userId: string,
+    userName: string,
+    userPhoneNumber: string,
+}
+
 interface Transaction {
     transactionId: number,
     transactionStatus: string,
@@ -11,7 +17,7 @@ interface Transaction {
         userId: string,
         userName: string,
         userEmail: string,
-        userPhoneNumber: number,
+        userPhoneNumber: string,
         userPassword: string,
         userAge: number,
         transaction: null
@@ -26,11 +32,11 @@ interface Transaction {
         cinemaLocationId: number,
         cinemaLocation: string,
         transaction: null,
-        movieShowTime: null,
-        seat: null
+        movieShowTime: string,
+        seat: string
     },
     paymentMethod: {
-        paymentMethodId: number,
+        paymentMethodId: 1,
         paymentMethodType: string,
         paymentMethodName: string,
         transaction: null
@@ -38,10 +44,11 @@ interface Transaction {
 }
 
 export function Transaction() {
-    const [transactionData, setTransactionData] = useState<Transaction[]>([]);
+    const [user, setUser] = useState<User | null>(null)
+    const [transactionData, setTransactionData] = useState<Transaction[]>([])
 
     useEffect(() => {
-        axios.get('https://localhost:7234/api/Transaction')
+        axios.get(`https://localhost:7234/api/Transaction/${localStorage.getItem("userId")}`)
             .then(response => {
                 const responseData = response.data.data;
                 setTransactionData(responseData);
@@ -58,10 +65,7 @@ export function Transaction() {
                 {transactionData.map(transaction => (
                     <li key={transaction.transactionId}>
                         {transaction.transactionDate}
-                        {transaction.user.userName}
-                        {transaction.theater.theaterName}
-                        {transaction.theater.theaterType}
-                        {transaction.paymentMethod.paymentMethodName}
+                        {transaction.user.userId}
                     </li>
                 ))}
             </ul>
