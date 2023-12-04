@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Seat.css';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Console } from 'console';
 
 interface SeatProps {
 
@@ -77,8 +78,31 @@ export function Seat(props: SeatProps): JSX.Element {
             });
     }, []);
 
+    const filteredSeatIdSeatTypeA = seatData.filter((seat) => {
+        return(
+            seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId &&
+            seat.seatName === 'A'
+        ) 
+    });
+
+    const filteredSeatIdSeatTypeB = seatData.filter((seat) => {
+        return(
+            seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId &&
+            seat.seatName === 'A'
+        ) 
+    });
+
+    const filteredSeatIdSeatTypeC = seatData.filter((seat) => {
+        return(
+            seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId &&
+            seat.seatName === 'A'
+        ) 
+    });
 
 
+    console.log('filtered seat id Type A: ', filteredSeatIdSeatTypeA);
+    console.log('filtered seat id Type B: ', filteredSeatIdSeatTypeB);
+    console.log('filtered seat id Type C: ', filteredSeatIdSeatTypeC);
 
   const [ticketPrice, setTicketPrice] = useState<number>(30000);
   const [selectedSeatsCount, setSelectedSeatsCount] = useState<number>(0);
@@ -97,6 +121,7 @@ export function Seat(props: SeatProps): JSX.Element {
     const newSelectedSeatsCount = selectedSeats.length;
     setSelectedSeatsCount(newSelectedSeatsCount);
   };
+  
     return(
         <div className="body">
             <ul className="showcase">
@@ -118,29 +143,35 @@ export function Seat(props: SeatProps): JSX.Element {
 
                 <div className="screen"></div>
 
-                <div className="row" onClick={handleSeatClick}>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                </div>
-                <div className="row" onClick={handleSeatClick}>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                </div>
-                <div className="row" onClick={handleSeatClick}>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                    <div className="seat "></div>
-                    <div className="seat"></div>
-                    <div className="seat"></div>
-                </div>
+                        <div className='row'>
+                            {filteredSeatIdSeatTypeA
+                                .filter(seat => seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId)
+                                .map(filteredSeatIdSeatTypeA => (
+                                <div className="seat" key={filteredSeatIdSeatTypeA.theater.theaterId} onClick={handleSeatClick}>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className='row'>
+                            {filteredSeatIdSeatTypeB
+                                .filter(seat => seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId)
+                                .map(filteredSeatIdSeatTypeB => (
+                                <div className="seat" key={filteredSeatIdSeatTypeB.theater.theaterId} onClick={handleSeatClick}>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className='row'>
+                            {filteredSeatIdSeatTypeB
+                                .filter(seat => seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId)
+                                .map(filteredSeatIdSeatTypeB => (
+                                <div className="seat" key={filteredSeatIdSeatTypeB.theater.theaterId} onClick={handleSeatClick}>
+                                </div>
+                            ))}
+                        </div>
+
                 <p className="text">
-                    You have selected <span id="count">{selectedSeatsCount}</span> seats for a price of Rp.<span id="total">{selectedSeatsCount * ticketPrice}</span>
+                    You have selected <span id="count"> {selectedSeatsCount} </span> seats for a price of Rp.<span id="total">{selectedSeatsCount * ticketPrice}</span>
                 </p>
             </div>
 
