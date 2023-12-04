@@ -41,7 +41,12 @@ export function Login() {
         if (response.status === 200) {
             alert("Login Successful");
             localStorage.setItem("userId", response.data.userId)
+<<<<<<< HEAD
             window.location.href = "/dashboard"
+=======
+            localStorage.setItem("userName", response.data.userName)
+            window.location.href = "/"
+>>>>>>> f7b0773c7541e7690e896af633df3d781ee3a938
         } else if (response.status === 401) {
             alert("Login failed: Incorect email or password.");
         } else {
