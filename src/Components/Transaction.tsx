@@ -69,6 +69,7 @@ export function Transaction() {
                         <p><strong>Theater Type:</strong> {transaction.theater.theaterType}</p>
                         <p><strong>Total Price:</strong> {transaction.totalPrice}</p>
                         <p><strong>Payment Method:</strong> {transaction.paymentMethod.paymentMethodName}</p>
+                        <p><strong>Transaction Status:</strong> {transaction.transactionStatus}</p>
                     </div>
                 </Col>
             ))}
