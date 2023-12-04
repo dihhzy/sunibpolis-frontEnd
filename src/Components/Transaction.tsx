@@ -1,11 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-interface User {
-    userId: string,
-    userName: string,
-    userPhoneNumber: string,
-}
+import { Col, Container, Row } from "react-bootstrap";
+import "./Transaction.css"
 
 interface Transaction {
     transactionId: number,
@@ -44,7 +40,6 @@ interface Transaction {
 }
 
 export function Transaction() {
-    const [user, setUser] = useState<User | null>(null)
     const [transactionData, setTransactionData] = useState<Transaction[]>([])
 
     useEffect(() => {
@@ -59,16 +54,24 @@ export function Transaction() {
     }, [])
 
     return (
-        <div>
-            <h3>Transaction</h3>
-            <ul>
-                {transactionData.map(transaction => (
-                    <li key={transaction.transactionId}>
-                        {transaction.transactionDate}
-                        {transaction.user.userId}
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Container className="transaction-container">
+            {transactionData.map(transaction => (
+                <Col key={transaction.transactionId}>
+                    <div className="transaction-item">
+                        <p><strong>User ID:</strong> {transaction.user.userId}</p>
+                        <p>
+                            <strong>
+                                Transaction Date:
+                            </strong>
+                            {new Date(transaction.transactionDate).toLocaleString()}
+                        </p>
+                        <p><strong>Theater Name:</strong> {transaction.theater.theaterName}</p>
+                        <p><strong>Theater Type:</strong> {transaction.theater.theaterType}</p>
+                        <p><strong>Total Price:</strong> {transaction.totalPrice}</p>
+                        <p><strong>Payment Method:</strong> {transaction.paymentMethod.paymentMethodName}</p>
+                    </div>
+                </Col>
+            ))}
+        </Container>
     )
 }
