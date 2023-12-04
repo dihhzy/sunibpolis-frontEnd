@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import './PaymentMethod.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface PaymentMethod {
     paymentMethodId: number;
@@ -29,16 +30,24 @@ export function PaymentMethod() {
         setSelectedPaymentMethod(e.target.value);
     };
 
+    const navigate = useNavigate()
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // Add your form submission logic here
+        e.preventDefault()
+
+        if (!selectedPaymentMethod) {
+            alert("Please choose a payment method")
+        }
+
+        alert("Payment Successful")
+        navigate("/myTicket")
     };
 
     const ButtonDisabled = !selectedPaymentMethod;
     const buttonColor = ButtonDisabled ? "grey" : "rgb(243, 182, 100)";
 
     console.log('Payment Methods: ', paymentMethodData);
-
+    
     paymentMethodData.forEach((paymentMethod) => {
         console.log('Payment Method Name: ', paymentMethod.paymentMethodName);
     });
@@ -60,7 +69,6 @@ export function PaymentMethod() {
                                                 name="paymentOption"
                                                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleOptionChange(e)}
                                             />
-                                            <label>{paymentMethod.paymentMethodName}</label>
                                             {paymentMethod.paymentMethodName === 'Gopay' && (
                                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/462px-Gopay_logo.svg.png?20210531070158" alt="gopay logo" style={{ height: '25px' }}/>
                                             )}
@@ -72,14 +80,14 @@ export function PaymentMethod() {
                                             )}
 
                                             {paymentMethod.paymentMethodName === 'Shopee-pay' && (
-                                                <img src="https://ww2.freelogovectors.net/wp-content/uploads/2023/10/shoppeepay_logo-freelogovectors.net_-640x400.png?lossy=1&ssl=1&fit=640%2C400" alt="shopee logo" style={{ height: '45px' }}/>
+                                                <img src="https://ww2.freelogovectors.net/wp-content/uploads/2023/10/shoppeepay_logo-freelogovectors.net_-640x400.png?lossy=1&ssl=1&fit=640%2C400" alt="shopee logo" style={{ height: '30px' }}/>
                                             )}
                                         </div>
                                     </div>
                                 ))}
                             </div>
                 <button id="pay-button" type="submit" disabled={ButtonDisabled} style={{ backgroundColor: buttonColor }}>
-                    Bayar
+                    Pay
                 </button>
             </form>
         </div>
