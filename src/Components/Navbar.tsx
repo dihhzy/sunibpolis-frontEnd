@@ -20,7 +20,8 @@ export function Navbar() {
     }, []);
 
     const setFalse = () => {
-        setLoggedIn(false);
+        localStorage.removeItem("userId");
+        window.location.reload();
     }
 
     return (
