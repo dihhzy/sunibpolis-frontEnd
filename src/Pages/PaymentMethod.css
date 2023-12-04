@@ -1,0 +1,108 @@
+.main{
+    border: 3px solid black;
+    width: 80vw;
+    height: 40vw;
+    border-radius: 10px;
+    margin-top: 5vw;
+    margin-bottom: 3vw;
+    background-color: #F5E8C7;
+}
+.kotak{
+    border-bottom: 3px solid black;
+    background-color: #363062;
+}
+.judul{
+    color: rgb(8, 2, 163);
+    font-size: 50px;
+    font-weight: 750;
+    color: #F5E8C7;
+}
+.payment-form{
+    margin-top: 3vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    margin-bottom: 10vw;
+    border: 2px solid black;
+    border-radius: 7px;
+    background-color: rgb(154, 208, 194);
+
+}
+.payment-options{
+    display: flex;
+    flex-direction: column;
+}
+.payment-options label{
+    margin-bottom: 10px;
+}
+
+.payment{
+    border: 1px solid black;
+    margin-bottom: 30px;
+    width: 40vw;
+    margin-left: 17vw;
+    border-radius: 7px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(126, 215, 193);
+}
+#pay-button{
+    margin-bottom: 1vw;
+    border-radius: 20vw;
+    width: 6vw;
+    height: 3vw;
+    color: white;
+    border: 1px white;
+}
+.payment-form h2{
+    font-weight: 600;
+}
+.payment label{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 550;
+    color: rgb(190, 49, 68);
+}
+.payment button{
+    margin-left: 5px;
+}
+
+input[type="radio"]{
+    transform: scale(1.5);
+    margin-left: -300px;
+    margin-right: -300px;
+    border: 3px solid rgb(48, 129, 208);
+    -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.2em;
+  height: 1.2em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.02em);
+  display: grid;
+  place-content: center;
+}
+input[type="radio"]::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 40%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+  }
+  input[type="radio"]:checked::before {
+    transform: scale(2.5);
+    background-color: orange;
+  }
+  input[type="radio"]:focus {
+    outline: max(1px, 0.15em) solid currentColor;
+    outline-offset: max(1px, 0.15em);
+  }

@@ -41,6 +41,11 @@ export function Seat(props: SeatProps): JSX.Element {
     const [selectedMovieShowTime, setSelectedMovieShowTime] = useState<MovieShowTime | null>(null);
     const { theaterId } = useParams<{ theaterId: string | undefined }>();
     
+    const navigate = useNavigate();
+    const navigateToPaymentMethod = () => {
+        navigate(`/PaymentMethod/`);
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -195,7 +200,7 @@ export function Seat(props: SeatProps): JSX.Element {
             </div>
 
             <div className='button-field2'>
-                <button>
+                <button onClick={() => navigateToPaymentMethod()}>
                     Order
                 </button>
             </div>
