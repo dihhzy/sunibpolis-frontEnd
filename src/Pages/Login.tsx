@@ -42,7 +42,7 @@ export function Login() {
             alert("Login Successful");
             localStorage.setItem("userId", response.data.userId)
             localStorage.setItem("userName", response.data.userName)
-            window.location.href = "/dashboard"
+            window.location.href = "/"
         } else if (response.status === 401) {
             alert("Login failed: Incorect email or password.");
         } else {
