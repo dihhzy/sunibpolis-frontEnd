@@ -1,9 +1,8 @@
-
-*{
+* {
     box-sizing: border-box;
 }
 
-.body{
+.body {
     background-color: #242333;
     display: flex;
     flex-direction: column;
@@ -15,9 +14,9 @@
     font-family: 'Roboto';
     border-radius: 30px;
     margin-top: 2vh;
-}   
+}
 
-.seat{
+.seat {
     background-color: #444451;
     height: 26px;
     width: 25px;
@@ -30,7 +29,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-} 
+}
+
 .seat-selected {
     background-color: rgb(163, 183, 99);
     height: 26px;
@@ -38,9 +38,9 @@
     margin: 3px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-} 
+}
 
-.row .seat-available{
+.row .seat-available {
     background-color: #444451;
     height: 26px;
     width: 25px;
@@ -54,28 +54,32 @@
     align-items: center;
     justify-content: center;
 }
-.isi .row{
+
+.isi .row {
     justify-content: center;
     display: flex;
     flex-direction: row;
 }
-.seat.available.selected{
+
+.seat.available.selected {
     background-color: rgb(163, 183, 99);
 }
-.seat.available:hover{
-    cursor: pointer;
-    transform: scale(1.2);
-}
-.seat.available.selected:hover{
+
+.seat.available:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
-.seat.occupied{
+.seat.available.selected:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.seat.occupied {
     background-color: rgb(205, 24, 24);
 }
 
-.row .seat-occupied{
+.row .seat-occupied {
     background-color: rgb(205, 24, 24);
     height: 26px;
     width: 25px;
@@ -90,12 +94,12 @@
     justify-content: center;
 }
 
-.seat-available:not(.occupied):hover{
+.seat-available:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 
-.showcase{
+.showcase {
     padding: 5px 10px;
     border-radius: 5px;
     color: #777;
@@ -103,36 +107,39 @@
     display: flex;
     justify-content: space-between;
 }
-.showcase li{
+
+.showcase li {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 10px;
 }
-.showcase li small{
+
+.showcase li small {
     margin-left: 10px;
 }
-.isi .screen{
+
+.isi .screen {
     background-color: #fff;
     color: white;
     height: 80px;
     width: 55vh;
     margin: 15px 0;
     transform: rotateX(-45deg);
-    box-shadow: 0 3px 10px rgba(255,255,255,0.75);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
 }
 
-.isi{
+.isi {
     perspective: 1000px;
     margin-bottom: 10px;
     align-items: center;
 }
 
-p.text{
+p.text {
     margin-top: 50px;
 }
 
-p.text span{
+p.text span {
     color: rgb(213, 213, 35);
 }
 
