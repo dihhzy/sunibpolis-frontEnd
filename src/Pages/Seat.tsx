@@ -88,14 +88,14 @@ export function Seat(props: SeatProps): JSX.Element {
     const filteredSeatIdSeatTypeB = seatData.filter((seat) => {
         return(
             seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId &&
-            seat.seatName === 'A'
+            seat.seatName === 'B'
         ) 
     });
 
     const filteredSeatIdSeatTypeC = seatData.filter((seat) => {
         return(
             seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId &&
-            seat.seatName === 'A'
+            seat.seatName === 'C'
         ) 
     });
 
@@ -143,32 +143,50 @@ export function Seat(props: SeatProps): JSX.Element {
 
                 <div className="screen"></div>
 
+                        
                         <div className='row'>
                             {filteredSeatIdSeatTypeA
                                 .filter(seat => seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId)
                                 .map(filteredSeatIdSeatTypeA => (
-                                <div className="seat" key={filteredSeatIdSeatTypeA.theater.theaterId} onClick={handleSeatClick}>
-                                </div>
-                            ))}
+                                    <div
+                                        className={`seat-${filteredSeatIdSeatTypeA.seatStatus === 'Available' ? 'available' : 'occupied'}`}
+                                        key={filteredSeatIdSeatTypeA.theater.theaterId}
+                                        onClick={handleSeatClick}
+                                    >
+                                        {/* {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber} */}
+                                    </div>
+                                ))}
                         </div>
 
                         <div className='row'>
                             {filteredSeatIdSeatTypeB
                                 .filter(seat => seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId)
                                 .map(filteredSeatIdSeatTypeB => (
-                                <div className="seat" key={filteredSeatIdSeatTypeB.theater.theaterId} onClick={handleSeatClick}>
-                                </div>
-                            ))}
+                                    <div
+                                        className={`seat-${filteredSeatIdSeatTypeB.seatStatus === 'Available' ? 'available' : 'occupied'}`}
+                                        key={filteredSeatIdSeatTypeB.theater.theaterId}
+                                        onClick={handleSeatClick}
+                                    >
+                                        {/* {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber} */}
+                                    </div>
+                                ))}
                         </div>
 
                         <div className='row'>
-                            {filteredSeatIdSeatTypeB
+                            {filteredSeatIdSeatTypeC
                                 .filter(seat => seat.theater.theaterId === selectedMovieShowTime?.theater.theaterId)
-                                .map(filteredSeatIdSeatTypeB => (
-                                <div className="seat" key={filteredSeatIdSeatTypeB.theater.theaterId} onClick={handleSeatClick}>
-                                </div>
-                            ))}
+                                .map(filteredSeatIdSeatTypeC => (
+                                    <div
+                                        className={`seat-${filteredSeatIdSeatTypeC.seatStatus === 'Available' ? 'available' : 'occupied'}`}
+                                        key={filteredSeatIdSeatTypeC.theater.theaterId}
+                                        onClick={handleSeatClick}
+                                    >
+                                        {/* {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber} */}
+                                    </div>
+                                ))}
                         </div>
+
+
 
                 <p className="text">
                     You have selected <span id="count"> {selectedSeatsCount} </span> seats for a price of Rp.<span id="total">{selectedSeatsCount * ticketPrice}</span>
