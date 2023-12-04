@@ -19,8 +19,16 @@
 
 .seat{
     background-color: #444451;
-    height: 21px;
-    width: 20px;
+    height: 26px;
+    width: 25px;
+    margin: 3px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+} 
+.seat-selected {
+    background-color: rgb(163, 183, 99);
+    height: 26px;
+    width: 25px;
     margin: 3px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -28,27 +36,46 @@
 
 .row .seat-available{
     background-color: #444451;
-    height: 21px;
-    width: 20px;
-    margin: 3px;
+    height: 26px;
+    width: 25px;
+    margin: 4.8px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    padding: 0;
+    font-size: 0.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .isi .row{
     justify-content: center;
     display: flex;
     flex-direction: row;
 }
-
-.seat.selected{
+.seat-available.selected{
     background-color: rgb(163, 183, 99);
+}
+.seat.occupied{
+    background-color: rgb(205, 24, 24);
 }
 
 .row .seat-occupied{
     background-color: rgb(205, 24, 24);
+    height: 26px;
+    width: 25px;
+    margin: 4.8px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0;
+    font-size: 0.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.seat:not(.occupied):hover{
+.seat-available:not(.occupied):hover{
     cursor: pointer;
     transform: scale(1.2);
 }
