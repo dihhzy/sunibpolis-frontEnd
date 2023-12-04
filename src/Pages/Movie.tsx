@@ -41,7 +41,7 @@ export function Movie() {
     return (
         <div className="movie-container">
 
-            <h1>================ Now Showing ================</h1>
+            <h1 className="movie-header">================ Now Showing ================</h1>
             <br />
 
             <div className="movie-grid">
@@ -59,7 +59,7 @@ export function Movie() {
 
             <br />
 
-            <h1>=================== Coming Soon ===================</h1>
+            <h1 className="movie-header">=================== Coming Soon ===================</h1>
 
             <br />
 
