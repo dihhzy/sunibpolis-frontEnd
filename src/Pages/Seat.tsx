@@ -107,17 +107,18 @@ export function Seat(props: SeatProps): JSX.Element {
   const [ticketPrice, setTicketPrice] = useState<number>(30000);
   const [selectedSeatsCount, setSelectedSeatsCount] = useState<number>(0);
 
+  
   const handleSeatClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const targetElement = e.target as HTMLDivElement;
-
-    if (targetElement && !targetElement.classList.contains('occupied')) {
+    if (targetElement && targetElement.classList.contains('seat-available')) {
       targetElement.classList.toggle('selected');
       updateSelectedCount();
     }
   };
+  
 
   const updateSelectedCount = () => {
-    const selectedSeats = document.querySelectorAll('.row .seat.selected');
+    const selectedSeats = document.querySelectorAll('.row .seat-available.selected');
     const newSelectedSeatsCount = selectedSeats.length;
     setSelectedSeatsCount(newSelectedSeatsCount);
   };
@@ -130,7 +131,7 @@ export function Seat(props: SeatProps): JSX.Element {
                 <small>Available</small>
             </li>
             <li>
-                <div className="seat selected"></div>
+                <div className="seat-selected"></div>
                 <small>Selected</small>
             </li>
             <li>
@@ -153,7 +154,7 @@ export function Seat(props: SeatProps): JSX.Element {
                                         key={filteredSeatIdSeatTypeA.theater.theaterId}
                                         onClick={handleSeatClick}
                                     >
-                                        {/* {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber} */}
+                                        {filteredSeatIdSeatTypeA.seatName} {filteredSeatIdSeatTypeA.seatNumber}
                                     </div>
                                 ))}
                         </div>
@@ -167,7 +168,7 @@ export function Seat(props: SeatProps): JSX.Element {
                                         key={filteredSeatIdSeatTypeB.theater.theaterId}
                                         onClick={handleSeatClick}
                                     >
-                                        {/* {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber} */}
+                                        {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber}
                                     </div>
                                 ))}
                         </div>
@@ -181,7 +182,7 @@ export function Seat(props: SeatProps): JSX.Element {
                                         key={filteredSeatIdSeatTypeC.theater.theaterId}
                                         onClick={handleSeatClick}
                                     >
-                                        {/* {filteredSeatIdSeatTypeB.seatName} {filteredSeatIdSeatTypeB.seatNumber} */}
+                                        {filteredSeatIdSeatTypeC.seatName} {filteredSeatIdSeatTypeC.seatNumber}
                                     </div>
                                 ))}
                         </div>
@@ -189,7 +190,7 @@ export function Seat(props: SeatProps): JSX.Element {
 
 
                 <p className="text">
-                    You have selected <span id="count"> {selectedSeatsCount} </span> seats for a price of Rp.<span id="total">{selectedSeatsCount * ticketPrice}</span>
+                    You have selected <span id="count"> {selectedSeatsCount} </span> seats for a price of Rp.<span id="total">{selectedSeatsCount * (selectedMovieShowTime?.theater?.ticketPrice || 0)}</span>
                 </p>
             </div>
 
