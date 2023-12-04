@@ -2,17 +2,16 @@ import { Container, Button, Nav, Navbar as NavbarNav } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
 import {useState, useEffect} from 'react'
 import './Navbar.css'
-import { useState } from "react"
 
 export function Navbar() {
-<<<<<<< HEAD
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("userId"))
 
     const handleLogout = () => {
         localStorage.removeItem("UserId")
         setIsLoggedIn(false)
         window.location.href = "/"
-=======
+    }
+
     const [loggedIn, setLoggedIn] = useState(false);
 
     const checkLoggedIn = () =>{
@@ -29,8 +28,8 @@ export function Navbar() {
     }, []);
 
     const setFalse = () => {
-        setLoggedIn(false);
->>>>>>> f7b0773c7541e7690e896af633df3d781ee3a938
+        localStorage.removeItem("userId");
+        window.location.reload();
     }
 
     return (
@@ -63,20 +62,10 @@ export function Navbar() {
                         }}>
                         |
                     </span>
-<<<<<<< HEAD
-                    <Nav.Link to="/register" as={NavLink}
-                        style={{ color: "rgb(245, 232, 199)", paddingLeft: "0px" }}>
-                        Register
-                    </Nav.Link>
-                    {isLoggedIn ? (
-                        <Button onClick={handleLogout} className="d-flex align-items-center justify-content-center"
-=======
-
                     {loggedIn ? 
                     (
                     <div className="logout">
                         <Button className="d-flex align-items-center justify-content-center"
->>>>>>> f7b0773c7541e7690e896af633df3d781ee3a938
                             style={{
                                 fontSize: "18px",
                                 height: "30px",
@@ -88,12 +77,6 @@ export function Navbar() {
                                 display: "flex",
                                 justifyContent: "center",
                                 padding: "3px 12px 5px 12px"
-<<<<<<< HEAD
-                            }}>
-                            Logout
-                        </Button>
-                    ) : (
-=======
                             }}
                             onClick={setFalse}
                             >
@@ -110,7 +93,6 @@ export function Navbar() {
                             style={{ color: "rgb(245, 232, 199)", paddingLeft: "0px" }}>
                             Register
                         </Nav.Link>
->>>>>>> f7b0773c7541e7690e896af633df3d781ee3a938
                         <Nav.Link to="/login" as={NavLink} className="d-flex align-items-center justify-content-center">
                             <Button className="d-flex align-items-center justify-content-center"
                                 style={{
@@ -128,10 +110,7 @@ export function Navbar() {
                                 Login
                             </Button>
                         </Nav.Link>
-<<<<<<< HEAD
-=======
                     </div>
->>>>>>> f7b0773c7541e7690e896af633df3d781ee3a938
                     )}
                 </Nav>
             </NavbarNav.Collapse>
