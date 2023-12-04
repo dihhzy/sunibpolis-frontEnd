@@ -198,7 +198,7 @@ export function MoviePage() {
                             {index > 0 && <div className='vertical-line'></div>}
                             <div className='show-time-desc'>
                                 <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
-                                <h4>{theatre.theaterName}</h4>
+                                <h4>{theatre.theaterName} {theatre.theaterType}</h4>
                             </div>
 
                             <div className='button-field'>

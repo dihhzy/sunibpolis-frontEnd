@@ -47,7 +47,6 @@ export function Register() {
     } else {
       alert("Registration Failed: Server error. Please try again later.");
     }
-    alert("Registration Successful")
 
     setFormData({
       username: "",
