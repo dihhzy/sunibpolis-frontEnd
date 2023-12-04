@@ -4,6 +4,14 @@ import {useState, useEffect} from 'react'
 import './Navbar.css'
 
 export function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("userId"))
+
+    const handleLogout = () => {
+        localStorage.removeItem("UserId")
+        setIsLoggedIn(false)
+        window.location.href = "/"
+    }
+
     const [loggedIn, setLoggedIn] = useState(false);
 
     const checkLoggedIn = () =>{
@@ -54,7 +62,6 @@ export function Navbar() {
                         }}>
                         |
                     </span>
-
                     {loggedIn ? 
                     (
                     <div className="logout">

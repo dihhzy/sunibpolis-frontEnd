@@ -41,6 +41,7 @@ export function Login() {
         if (response.status === 200) {
             alert("Login Successful");
             localStorage.setItem("userId", response.data.userId)
+            window.location.href = "/dashboard"
             localStorage.setItem("userName", response.data.userName)
             window.location.href = "/"
         } else if (response.status === 401) {
