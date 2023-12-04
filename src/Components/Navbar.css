@@ -28,6 +28,14 @@ button:not(:disabled) {
     background: linear-gradient(to right, rgba(160, 166, 218, 0.5), rgba(81, 87, 136, 0.5));
 }
 
+.registerAndLogin{
+    display: flex;
+}
+
+.logout{
+    margin-top: 7px;
+}
+
 @media (max-width: 768px) {
     span.mx-2.d-flex.align-items-center {
         display: none !important;
