@@ -60,7 +60,6 @@ export function PaymentMethod() {
                                                 name="paymentOption"
                                                 onChange={(e: ChangeEvent<HTMLInputElement>) => handleOptionChange(e)}
                                             />
-                                            <label>{paymentMethod.paymentMethodName}</label>
                                             {paymentMethod.paymentMethodName === 'Gopay' && (
                                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/462px-Gopay_logo.svg.png?20210531070158" alt="gopay logo" style={{ height: '25px' }}/>
                                             )}
@@ -72,7 +71,7 @@ export function PaymentMethod() {
                                             )}
 
                                             {paymentMethod.paymentMethodName === 'Shopee-pay' && (
-                                                <img src="https://ww2.freelogovectors.net/wp-content/uploads/2023/10/shoppeepay_logo-freelogovectors.net_-640x400.png?lossy=1&ssl=1&fit=640%2C400" alt="shopee logo" style={{ height: '45px' }}/>
+                                                <img src="https://ww2.freelogovectors.net/wp-content/uploads/2023/10/shoppeepay_logo-freelogovectors.net_-640x400.png?lossy=1&ssl=1&fit=640%2C400" alt="shopee logo" style={{ height: '30px' }}/>
                                             )}
                                         </div>
                                     </div>

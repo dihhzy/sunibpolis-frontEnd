@@ -62,6 +62,9 @@
 }
 
 .button-field button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #363062;
     color: #eaeaea;
     height: 5vh;
@@ -72,13 +75,9 @@
     cursor: pointer;
     margin: 1.8vh;
     transition: background 0.5s;
+    font-size: 0.9rem;
 }
 
-.button-field button a{
-    text-decoration: none;
-    color: #F5E8C7;
-    padding: 2px;
-}
 
 .button-field button:hover {
     background-color: rgb(155, 60, 250);

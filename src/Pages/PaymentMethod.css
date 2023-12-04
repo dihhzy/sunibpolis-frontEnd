@@ -47,6 +47,10 @@
     align-items: center;
     background-color: rgb(126, 215, 193);
 }
+.payment img{
+    margin: 1.8vh 1.5vh;
+}
+
 #pay-button{
     margin-bottom: 1vw;
     border-radius: 20vw;
