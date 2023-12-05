@@ -1,11 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Transaction } from "../Components/Transaction";
+import { useEffect, useState } from "react";
 
 export function MyTicket() {
-    const navigate = useNavigate();
-    const redirectToSeat = () => {
-        navigate('/seat');
-    }
     return (
         <div>
             <h1>My Ticket</h1>

@@ -41,7 +41,6 @@ export function Register() {
     if (response.status === 200) {
       alert("Registration Successful");
       window.location.href = "/login"
-      window.location.href = "/"
     } else if (response.status === 401) {
       alert("Registration failed: Incorect email or password.");
     } else {

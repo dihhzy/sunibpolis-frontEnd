@@ -52,11 +52,27 @@ export function MoviePage() {
     const [theatreData, setTheatreData] = useState<Theater[]>([]);
     const [movieShowTimeData, setMovieShowTimeData] = useState<MovieShowTime[]>([]);
 
-    const navigate = useNavigate();
-    const navigateToSeat = (theaterId : number) => {
-        navigate(`/Seat/${theaterId}`);
-    };
+    // validate user must login before choose movie showtime
+    const [userId, setUserId] = useState<string | null>(null)
 
+    const checkUserExistence = () => {
+        const userStorage = localStorage.getItem("userId")
+        setUserId(userStorage)
+    }
+
+    useEffect(() => {
+        checkUserExistence()
+    })
+
+    const navigate = useNavigate();
+    const navigateToSeat = (theaterId: number) => {
+        if (userId) {
+            navigate(`/Seat/${theaterId}`);
+        } else {
+            alert("Please login before proceed to choose show time")
+            navigate("/login")
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -82,7 +98,7 @@ export function MoviePage() {
     }, [movieId]);
 
     console.log('movie Id: ', movieId)
-    
+
     useEffect(() => {
         axios.get('https://localhost:7234/api/Theater')
             .then(response => {
@@ -95,9 +111,7 @@ export function MoviePage() {
             });
     }, []);
 
-    const filteredTheatreData = selectedMovie? theatreData.filter(theatre => theatre.movie?.movieId  === selectedMovie.movieId): [];
-    
-    
+    const filteredTheatreData = selectedMovie ? theatreData.filter(theatre => theatre.movie?.movieId === selectedMovie.movieId) : [];
 
     useEffect(() => {
         axios.get('https://localhost:7234/api/MovieShowTime')
@@ -123,7 +137,7 @@ export function MoviePage() {
     //         movieShowTime.theater?.theaterId === (filteredTheatreData.length > 0 ? filteredTheatreData[0].theaterId: 0 )
     //     );
     // });
-    
+
     const filteredMovieShowTimeData = movieShowTimeData.filter((movieShowTime) => {
         const theaterIds = filteredTheatreData.map(theater => theater.theaterId);
         return (
@@ -131,15 +145,15 @@ export function MoviePage() {
             theaterIds.includes(movieShowTime.theater?.theaterId)
         );
     });
-    
+
 
     console.log('filteredMovieShowTimeData: ', filteredMovieShowTimeData);
-    
+
 
     const filteredMovieShowTimeIds = movieShowTimeData.map(movieShowTime => movieShowTime.theater?.movieId)
 
     // console.log('Movie Show Time IDs:', filteredMovieShowTimeIds);
-  
+
 
     console.log('Filtered Theatre Data:', filteredTheatreData);
     // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
@@ -188,40 +202,40 @@ export function MoviePage() {
             <div className='vertical-line'></div>
 
 
-            
+
             <div className='show-time-container'>
 
-            <div className="">
-                {filteredTheatreData.length > 0 ? (
-                    filteredTheatreData.map((theatre, index) => (
-                        <div key={theatre.theaterId}>
-                            {index > 0 && <div className='vertical-line'></div>}
-                            <div className='show-time-desc'>
-                                <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
-                                <h4>{theatre.theaterName} {theatre.theaterType}</h4>
+                <div className="">
+                    {filteredTheatreData.length > 0 ? (
+                        filteredTheatreData.map((theatre, index) => (
+                            <div key={theatre.theaterId}>
+                                {index > 0 && <div className='vertical-line'></div>}
+                                <div className='show-time-desc'>
+                                    <h2>{theatre.cinemaLocation && theatre.cinemaLocation.cinemaLocationName}</h2>
+                                    <h4>{theatre.theaterName} {theatre.theaterType}</h4>
+                                </div>
+
+                                <div className='button-field'>
+                                    {filteredMovieShowTimeData
+                                        .filter(movieShowTime => movieShowTime.theater.theaterId === theatre.theaterId)
+                                        .map(filteredMovieShowTime => (
+                                            <div className="" key={filteredMovieShowTime.theater.theaterId}>
+                                                <button type="submit" onClick={() => navigateToSeat(filteredMovieShowTime.theater.theaterId)}>
+                                                    {new Date(filteredMovieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                </button>
+                                            </div>
+                                        ))}
+                                </div>
                             </div>
-
-                            <div className='button-field'>
-                                {filteredMovieShowTimeData
-                                    .filter(movieShowTime => movieShowTime.theater.theaterId === theatre.theaterId)
-                                    .map(filteredMovieShowTime => (
-                                        <div className="" key={filteredMovieShowTime.theater.theaterId}>
-                                            <button type="submit" onClick={() => navigateToSeat(filteredMovieShowTime.theater.theaterId)}>
-                                                {new Date(filteredMovieShowTime.showTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                            </button>
-                                        </div>
-                                    ))}
-                            </div>
-                        </div>
-                    ))
-                ) : (
-                    <p>No theaters available for the selected movie.</p>
-                )}
-                <div className='vertical-line'></div>
-            </div>
+                        ))
+                    ) : (
+                        <p>No theaters available for the selected movie.</p>
+                    )}
+                    <div className='vertical-line'></div>
+                </div>
 
 
-                
+
             </div>
         </div>
     );
