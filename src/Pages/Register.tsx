@@ -26,7 +26,11 @@ export function Register() {
       alert("data tidak boleh kosong");
       return
     }
-    const response = await axios.post('https://localhost:7234/api/User/api/User/register', {
+
+    let response;
+
+    try{
+      response = await axios.post('https://localhost:7234/api/User/api/User/register', {
       userName: formData.username,
       userEmail: formData.email,
       userPhoneNumber: formData.phone,
@@ -38,10 +42,17 @@ export function Register() {
       }
     })
 
-    if (response.status === 200) {
+    console.log('response: ', response);
+
+    }catch(error){
+      console.log('bngst', error);
+    }
+    
+
+    if (response?.status === 200) {
       alert("Registration Successful");
       window.location.href = "/login"
-    } else if (response.status === 401) {
+    } else if (response?.status === 401) {
       alert("Registration failed: Incorect email or password.");
     } else {
       alert("Registration Failed: Server error. Please try again later.");
