@@ -1,13 +1,13 @@
-import { Container, Button, Nav, Navbar as NavbarNav } from "react-bootstrap"
-import { NavLink } from "react-router-dom"
-import {useState, useEffect} from 'react'
-import './Navbar.css'
+import { Button, Nav, Navbar as NavbarNav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import './Navbar.css';
 
 export function Navbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("userId"))
 
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("userId"))
     const handleLogout = () => {
-        localStorage.removeItem("UserId")
+        localStorage.removeItem("userId")
         setIsLoggedIn(false)
         window.location.href = "/"
     }
@@ -32,6 +32,17 @@ export function Navbar() {
         window.location.reload();
     }
 
+    //User forced to login first to access My Ticket
+    //If a user hasn't logged in, user can't access his own ticket.
+    const handleMyTicketClick = () => {
+        if (!isLoggedIn) {
+            alert("Please login first to access My Ticket");
+            window.location.href = "/login";
+        } else {
+            window.location.href = "/myTicket";
+        }
+    };
+
     return (
         <NavbarNav expand="md" className="shadow-sm mb-3 p-3"
             style={{
@@ -49,7 +60,8 @@ export function Navbar() {
                         Movie
                     </Nav.Link>
                     <Nav.Link to="/myTicket" as={NavLink}
-                        style={{ color: "rgb(245, 232, 199)" }}>
+                        style={{ color: "rgb(245, 232, 199)" }}
+                        onClick={handleMyTicketClick}>
                         my Ticket
                     </Nav.Link>
                     <Nav.Link to="/news" as={NavLink}
@@ -62,7 +74,7 @@ export function Navbar() {
                         }}>
                         |
                     </span>
-                    {loggedIn ? 
+                    {isLoggedIn ? 
                     (
                     <div className="logout">
                         <Button className="d-flex align-items-center justify-content-center"
@@ -114,6 +126,6 @@ export function Navbar() {
                     )}
                 </Nav>
             </NavbarNav.Collapse>
-        </NavbarNav >
+        </NavbarNav>
     )
 }
