@@ -40,8 +40,30 @@ interface Transaction {
 }
 
 export function Transaction() {
+    const userId = localStorage.getItem("userId")
+    const movieName = localStorage.getItem("selectedMovieName")
+    const movieShowTime = localStorage.getItem("selectedMovieShowTime")
+    const theaterName = localStorage.getItem("selectedTheaterNamee")
+    const paymentMethod = localStorage.getItem("selectedPaymentMethod")
+    console.log(theaterName)
+
+    // create transaction
+    // const response = axios.post('https://localhost:7234/api/CreateTransaction', {
+    //     // TransactionDate: /* ... */,
+    //     // TransactionStatus: /* ... */,
+    //     // TotalTicket: /* ... */,
+    //     // TotalPrice: /* ... */,
+    //     UserId: localStorage.getItem("userId"),
+    // }, {
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // });
+
+
     const [transactionData, setTransactionData] = useState<Transaction[]>([])
 
+    // get transaction data
     useEffect(() => {
         axios.get(`https://localhost:7234/api/Transaction/${localStorage.getItem("userId")}`)
             .then(response => {
@@ -55,24 +77,13 @@ export function Transaction() {
 
     return (
         <Container className="transaction-container">
-            {transactionData.map(transaction => (
-                <Col key={transaction.transactionId}>
-                    <div className="transaction-item">
-                        <p><strong>User ID:</strong> {transaction.user.userId}</p>
-                        <p>
-                            <strong>
-                                Transaction Date:
-                            </strong>
-                            {new Date(transaction.transactionDate).toLocaleString()}
-                        </p>
-                        <p><strong>Theater Name:</strong> {transaction.theater.theaterName}</p>
-                        <p><strong>Theater Type:</strong> {transaction.theater.theaterType}</p>
-                        <p><strong>Total Price:</strong> {transaction.totalPrice}</p>
-                        <p><strong>Payment Method:</strong> {transaction.paymentMethod.paymentMethodName}</p>
-                        <p><strong>Transaction Status:</strong> {transaction.transactionStatus}</p>
-                    </div>
-                </Col>
-            ))}
+            <Col>
+                <p><strong>User ID:</strong> {userId}</p>
+                <p><strong>Movie Name:</strong> {movieName}</p>
+                <p><strong>Theater Name:</strong> {theaterName}</p>
+                <p><strong>Movie ShowTime:</strong> {movieShowTime}</p>
+                <p><strong>Payment Method:</strong> {paymentMethod}</p>
+            </Col>
         </Container>
     )
 }

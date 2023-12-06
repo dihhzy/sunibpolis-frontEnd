@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './MoviePage.css';
+import { threadId } from 'worker_threads';
 
 interface Movie {
     movieId: number;
@@ -83,14 +84,14 @@ export function MoviePage() {
 
                 if (foundMovie) {
                     setSelectedMovie(foundMovie);
+                    localStorage.setItem("selectedMovieName", foundMovie.movieName)
                 } else {
                     console.error(`Movie with ID ${movieId} not found.`);
                 }
-
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
-        };
+        }
 
         if (movieId) {
             fetchData();
@@ -125,19 +126,6 @@ export function MoviePage() {
             });
     }, []);
 
-
-    // console.log('selectedMovie.movieId:', selectedMovie?.movieId);
-    // console.log('movieShowTimeData:', movieShowTimeData);
-
-
-
-    // const filteredMovieShowTimeData = movieShowTimeData.filter((movieShowTime) => {
-    //     return (
-    //         movieShowTime.theater?.movieId === selectedMovie?.movieId &&
-    //         movieShowTime.theater?.theaterId === (filteredTheatreData.length > 0 ? filteredTheatreData[0].theaterId: 0 )
-    //     );
-    // });
-
     const filteredMovieShowTimeData = movieShowTimeData.filter((movieShowTime) => {
         const theaterIds = filteredTheatreData.map(theater => theater.theaterId);
         return (
@@ -146,17 +134,11 @@ export function MoviePage() {
         );
     });
 
-
     console.log('filteredMovieShowTimeData: ', filteredMovieShowTimeData);
-
 
     const filteredMovieShowTimeIds = movieShowTimeData.map(movieShowTime => movieShowTime.theater?.movieId)
 
-    // console.log('Movie Show Time IDs:', filteredMovieShowTimeIds);
-
-
     console.log('Filtered Theatre Data:', filteredTheatreData);
-    // console.log('Filtered Movie Show Time Data:', filteredMovieShowTimeData);
 
     return (
         <div>

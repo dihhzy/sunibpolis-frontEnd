@@ -39,6 +39,7 @@ export function PaymentMethod() {
             alert("Please choose a payment method")
         }
 
+        localStorage.setItem("selectedPaymentMethod", selectedPaymentMethod)
         alert("Payment Successful")
         navigate("/myTicket")
     };
@@ -47,7 +48,7 @@ export function PaymentMethod() {
     const buttonColor = ButtonDisabled ? "grey" : "rgb(243, 182, 100)";
 
     console.log('Payment Methods: ', paymentMethodData);
-    
+
     paymentMethodData.forEach((paymentMethod) => {
         console.log('Payment Method Name: ', paymentMethod.paymentMethodName);
     });
@@ -60,32 +61,32 @@ export function PaymentMethod() {
             <form className="payment-form" onSubmit={handleSubmit} id="form-payment">
                 <h2>Please Choose</h2>
 
-                            <div className="payment-options">
-                                {paymentMethodData.map((paymentMethod) => (
-                                    <div key={paymentMethod.paymentMethodId}>
-                                        <div className="payment">
-                                            <input
-                                                type="radio"
-                                                name="paymentOption"
-                                                onChange={(e: ChangeEvent<HTMLInputElement>) => handleOptionChange(e)}
-                                            />
-                                            {paymentMethod.paymentMethodName === 'Gopay' && (
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/462px-Gopay_logo.svg.png?20210531070158" alt="gopay logo" style={{ height: '25px' }}/>
-                                            )}
-                                            {paymentMethod.paymentMethodName === 'OVO' && (
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png" alt="ovo logo"  style={{ height: '20px' }}/>
-                                            )}
-                                            {paymentMethod.paymentMethodName === 'BCA' && (
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1199px-Bank_Central_Asia.svg.png" alt="bca logo" style={{ height: '25px' }}/>
-                                            )}
+                <div className="payment-options">
+                    {paymentMethodData.map((paymentMethod) => (
+                        <div key={paymentMethod.paymentMethodId}>
+                            <div className="payment">
+                                <input
+                                    type="radio"
+                                    name="paymentOption"
+                                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleOptionChange(e)}
+                                />
+                                {paymentMethod.paymentMethodName === 'Gopay' && (
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/462px-Gopay_logo.svg.png?20210531070158" alt="gopay logo" style={{ height: '25px' }} />
+                                )}
+                                {paymentMethod.paymentMethodName === 'OVO' && (
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/768px-Logo_ovo_purple.svg.png" alt="ovo logo" style={{ height: '20px' }} />
+                                )}
+                                {paymentMethod.paymentMethodName === 'BCA' && (
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1199px-Bank_Central_Asia.svg.png" alt="bca logo" style={{ height: '25px' }} />
+                                )}
 
-                                            {paymentMethod.paymentMethodName === 'Shopee-pay' && (
-                                                <img src="https://ww2.freelogovectors.net/wp-content/uploads/2023/10/shoppeepay_logo-freelogovectors.net_-640x400.png?lossy=1&ssl=1&fit=640%2C400" alt="shopee logo" style={{ height: '30px' }}/>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
+                                {paymentMethod.paymentMethodName === 'Shopee-pay' && (
+                                    <img src="https://ww2.freelogovectors.net/wp-content/uploads/2023/10/shoppeepay_logo-freelogovectors.net_-640x400.png?lossy=1&ssl=1&fit=640%2C400" alt="shopee logo" style={{ height: '30px' }} />
+                                )}
                             </div>
+                        </div>
+                    ))}
+                </div>
                 <button id="pay-button" type="submit" disabled={ButtonDisabled} style={{ backgroundColor: buttonColor }}>
                     Pay
                 </button>

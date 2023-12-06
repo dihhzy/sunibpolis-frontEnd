@@ -54,6 +54,8 @@ export function Seat() {
 
                 if (foundMovieShowTime) {
                     setSelectedMovieShowTime(foundMovieShowTime);
+                    localStorage.setItem("selectedMovieShowTime", foundMovieShowTime.showTime)
+                    localStorage.setItem("selectedTheaterNamee", foundMovieShowTime.theater.theaterName)
                 } else {
                     console.error(`Theater with ID ${theaterId} not found.`);
                 }

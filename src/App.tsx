@@ -15,7 +15,6 @@ import { TermsnCondition } from './Pages/TermsnCondition';
 import { AboutUs } from './Pages/About';
 import { Seat } from './Pages/Seat';
 import { PaymentMethod } from './Pages/PaymentMethod';
-import { Transaction } from './Pages/Transaction';
 
 function App() {
   return (
@@ -36,7 +35,6 @@ function App() {
           <Route path="/termsncondition" element={<TermsnCondition />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/paymentMethod" element={<PaymentMethod />} />
-          <Route path="/transaction" element={<Transaction />} />
         </Routes>
       </Container>
       <Footer />
