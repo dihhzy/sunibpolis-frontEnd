@@ -183,8 +183,6 @@ export function MoviePage() {
 
             <div className='vertical-line'></div>
 
-
-
             <div className='show-time-container'>
 
                 <div className="">
@@ -215,9 +213,6 @@ export function MoviePage() {
                     )}
                     <div className='vertical-line'></div>
                 </div>
-
-
-
             </div>
         </div>
     );

@@ -14,11 +14,11 @@ export function Navbar() {
 
     const [loggedIn, setLoggedIn] = useState(false);
 
-    const checkLoggedIn = () =>{
+    const checkLoggedIn = () => {
         const checkLocal = localStorage.getItem("userId");
-        if(checkLocal === null){
+        if (checkLocal === null) {
             setLoggedIn(false);
-        }else{
+        } else {
             setLoggedIn(true);
         }
     }
@@ -74,56 +74,61 @@ export function Navbar() {
                         }}>
                         |
                     </span>
-                    {isLoggedIn ? 
-                    (
-                    <div className="logout">
-                        <Button className="d-flex align-items-center justify-content-center"
-                            style={{
-                                fontSize: "18px",
-                                height: "30px",
-                                width: "75px",
-                                backgroundColor: "rgb(54, 48, 98)",
-                                border: "1px solid white",
-                                borderRadius: "10px",
-                                color: "rgb(245, 232, 199)",
-                                display: "flex",
-                                justifyContent: "center",
-                                padding: "3px 12px 5px 12px"
-                            }}
-                            onClick={setFalse}
-                            >
-                            Logout
-                        </Button>
-                    </div>
-                    ) 
-                    
-                    : 
-                    
-                    (
-                    <div className="registerAndLogin">
-                        <Nav.Link to="/register" as={NavLink}
-                            style={{ color: "rgb(245, 232, 199)", paddingLeft: "0px" }}>
-                            Register
-                        </Nav.Link>
-                        <Nav.Link to="/login" as={NavLink} className="d-flex align-items-center justify-content-center">
-                            <Button className="d-flex align-items-center justify-content-center"
-                                style={{
-                                    fontSize: "18px",
-                                    height: "30px",
-                                    width: "75px",
-                                    backgroundColor: "rgb(54, 48, 98)",
-                                    border: "1px solid white",
-                                    borderRadius: "10px",
-                                    color: "rgb(245, 232, 199)",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    padding: "3px 12px 5px 12px"
-                                }}>
-                                Login
-                            </Button>
-                        </Nav.Link>
-                    </div>
-                    )}
+                    {isLoggedIn ?
+                        (
+                            <div className="logout d-flex flex-direction-col align-items-center justify-content-center">
+                                <Button className="d-flex align-items-center justify-content-center"
+                                    style={{
+                                        fontSize: "18px",
+                                        height: "30px",
+                                        width: "75px",
+                                        backgroundColor: "rgb(54, 48, 98)",
+                                        border: "1px solid white",
+                                        borderRadius: "10px",
+                                        color: "rgb(245, 232, 199)",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        padding: "3px 12px 5px 12px"
+                                    }}
+                                    onClick={setFalse}
+                                >
+                                    Logout
+                                </Button>
+                            </div>
+                        )
+
+                        :
+
+                        (
+                            <div className="registerAndLogin">
+                                <div>
+                                    <Nav.Link to="/register" as={NavLink} className=" d-flex flex-direction-col align-items-center justify-content-center"
+                                        style={{ color: "rgb(245, 232, 199)", paddingLeft: "0px" }}>
+                                        Register
+                                    </Nav.Link>
+                                </div>
+                                <div>
+                                    <Nav.Link to="/login" as={NavLink} className="d-flex align-items-center justify-content-center">
+                                        <Button className="d-flex align-items-center justify-content-center"
+                                            style={{
+                                                fontSize: "18px",
+                                                height: "30px",
+                                                width: "75px",
+                                                backgroundColor: "rgb(54, 48, 98)",
+                                                border: "1px solid white",
+                                                borderRadius: "10px",
+                                                color: "rgb(245, 232, 199)",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                padding: "3px 12px 5px 12px"
+                                            }}>
+                                            Login
+                                        </Button>
+                                    </Nav.Link>
+                                </div>
+                            </div>
+
+                        )}
                 </Nav>
             </NavbarNav.Collapse>
         </NavbarNav>
