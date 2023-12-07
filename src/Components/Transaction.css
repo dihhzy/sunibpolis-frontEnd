@@ -1,12 +1,14 @@
 .transaction-container {
     margin-top: 25px;
-    background-color: rgb(67, 85, 133);
-    color: white;
+    background-color: rgb(54, 48, 98);
+    color: rgb(245, 232, 199);
     border-radius: 20px 0px;
+    padding: 2vh;
+    padding-right: 20vh;
+
 }
 
-.transaction-item {
-    padding: 25px;
+.transaction-container p {
     text-align: left;
 }
 

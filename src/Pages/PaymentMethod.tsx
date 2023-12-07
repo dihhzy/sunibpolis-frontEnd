@@ -38,8 +38,6 @@ export function PaymentMethod() {
         if (!selectedPaymentMethod) {
             alert("Please choose a payment method")
         }
-
-        localStorage.setItem("selectedPaymentMethod", selectedPaymentMethod)
         alert("Payment Successful")
         navigate("/myTicket")
     };

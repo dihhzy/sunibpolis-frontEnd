@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./Transaction.css"
+import { Seat } from "../Pages/Seat";
 
 interface Transaction {
     transactionId: number,
@@ -40,25 +41,14 @@ interface Transaction {
 }
 
 export function Transaction() {
-    const userId = localStorage.getItem("userId")
+    const userName = localStorage.getItem("userName")
     const movieName = localStorage.getItem("selectedMovieName")
     const movieShowTime = localStorage.getItem("selectedMovieShowTime")
     const theaterName = localStorage.getItem("selectedTheaterNamee")
-    const paymentMethod = localStorage.getItem("selectedPaymentMethod")
-    console.log(theaterName)
-
-    // create transaction
-    // const response = axios.post('https://localhost:7234/api/CreateTransaction', {
-    //     // TransactionDate: /* ... */,
-    //     // TransactionStatus: /* ... */,
-    //     // TotalTicket: /* ... */,
-    //     // TotalPrice: /* ... */,
-    //     UserId: localStorage.getItem("userId"),
-    // }, {
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // });
+    const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats") || '[]') as Seat[];
+    console.log('selectedSeats:', selectedSeats);
+    const selectedSeatInfo = selectedSeats.map(seat => `${seat.seatName}${seat.seatNumber}`).join(', ');
+    console.log('selectedSeatInfo:', selectedSeatInfo);
 
 
     const [transactionData, setTransactionData] = useState<Transaction[]>([])
@@ -78,11 +68,11 @@ export function Transaction() {
     return (
         <Container className="transaction-container">
             <Col>
-                <p><strong>User ID:</strong> {userId}</p>
-                <p><strong>Movie Name:</strong> {movieName}</p>
-                <p><strong>Theater Name:</strong> {theaterName}</p>
-                <p><strong>Movie ShowTime:</strong> {movieShowTime}</p>
-                <p><strong>Payment Method:</strong> {paymentMethod}</p>
+                <p><strong>Username:</strong> {userName}</p>
+                <p><strong>Movie name:</strong> {movieName}</p>
+                <p><strong>Theater name:</strong> {theaterName}</p>
+                <p><strong>Movie show time:</strong> {movieShowTime}</p>
+                <p><strong>Seat:</strong> {selectedSeatInfo}</p>
             </Col>
         </Container>
     )

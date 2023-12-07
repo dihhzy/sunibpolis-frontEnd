@@ -23,7 +23,7 @@ interface MovieShowTime {
     };
 }
 
-interface Seat {
+export interface Seat {
     seatId: number;
     seatName: string;
     seatNumber: number;
@@ -37,7 +37,7 @@ export function Seat() {
 
     const [seatData, setSeatData] = useState<Seat[]>([]);
     const [selectedMovieShowTime, setSelectedMovieShowTime] = useState<MovieShowTime | null>(null);
-    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+    const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
     const { theaterId } = useParams<{ theaterId: string | undefined }>();
 
     const navigate = useNavigate();
@@ -109,26 +109,31 @@ export function Seat() {
     console.log('filtered seat id Type B: ', filteredSeatIdSeatTypeB);
     console.log('filtered seat id Type C: ', filteredSeatIdSeatTypeC);
 
-    const handleSeatClick = (seatId: number, seatStatus: string) => {
+    const handleSeatClick = (seatId: number, seatName: string, seatNumber: number, seatStatus: string) => {
         if (seatStatus === 'Occupied') {
             return;
         }
 
-        const isSelected = selectedSeats.includes(seatId);
-        const seatElement = document.getElementById(`seat-${seatId}`);
+        const isSelected = selectedSeats.some((seat) => seat.seatId === seatId);
 
         if (isSelected) {
-            const updatedSeats = selectedSeats.filter((id) => id !== seatId);
+            const updatedSeats = selectedSeats.filter((seat) => seat.seatId !== seatId);
             setSelectedSeats(updatedSeats);
         } else {
-            setSelectedSeats([...selectedSeats, seatId]);
+            const selectedSeat = seatData.find((seat) => seat.seatId === seatId);
+            if (selectedSeat) {
+                setSelectedSeats([...selectedSeats, selectedSeat]);
+            }
         }
 
+        // Store selected seats in local storage
+        localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
+
+        const seatElement = document.getElementById(`seat-${seatId}`);
         if (seatElement) {
             seatElement.classList.toggle('selected');
         }
     };
-
     const calculateTotalPrice = () => {
         return selectedSeats.length * (selectedMovieShowTime?.theater?.ticketPrice || 0);
     };
@@ -139,28 +144,35 @@ export function Seat() {
 
     console.log('seatIds selected: ', selectedSeats);
 
+    // Store selected seats in local storage
+    // localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
+    // console.log("SELECTED SEAT ", selectedSeats)
+
     // update seat status [put axios]
     const handleOrder = async () => {
         try {
-            for (const seatId of selectedSeats) {
+            for (const seat of selectedSeats) {
                 await axios.put(
-                    `https://localhost:7234/api/Seat/${seatId}`,
+                    `https://localhost:7234/api/Seat/${seat.seatId}`,
                     { seatStatus: 'Occupied' },
                     {
                         params: {
-                            SeatId: seatId
+                            SeatId: seat.seatId
                         },
                         headers: {
                             'Content-Type': 'application/json',
                         }
                     }
-                )
+                );
             }
+
+            localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
             navigateToPaymentMethod();
         } catch (error) {
             console.error('Error placing order:', error);
         }
-    }
+    };
+
 
     return (
         <div className="body">
@@ -189,7 +201,7 @@ export function Seat() {
                                 id={`seat-${filteredSeatIdSeatTypeA.seatId}`}
                                 className={`seat ${filteredSeatIdSeatTypeA.seatStatus === 'Available' ? 'available' : 'occupied'}`}
                                 key={filteredSeatIdSeatTypeA.seatId}
-                                onClick={() => handleSeatClick(filteredSeatIdSeatTypeA.seatId, filteredSeatIdSeatTypeA.seatStatus)}
+                                onClick={() => handleSeatClick(filteredSeatIdSeatTypeA.seatId, filteredSeatIdSeatTypeA.seatName, filteredSeatIdSeatTypeA.seatNumber, filteredSeatIdSeatTypeA.seatStatus)}
                             >
                                 {filteredSeatIdSeatTypeA.seatName}{filteredSeatIdSeatTypeA.seatNumber}
                             </div>
@@ -204,7 +216,7 @@ export function Seat() {
                                 id={`seat-${filteredSeatIdSeatTypeB.seatId}`}
                                 className={`seat ${filteredSeatIdSeatTypeB.seatStatus === 'Available' ? 'available' : 'occupied'}`}
                                 key={filteredSeatIdSeatTypeB.seatId}
-                                onClick={() => handleSeatClick(filteredSeatIdSeatTypeB.seatId, filteredSeatIdSeatTypeB.seatStatus)}
+                                onClick={() => handleSeatClick(filteredSeatIdSeatTypeB.seatId, filteredSeatIdSeatTypeB.seatName, filteredSeatIdSeatTypeB.seatNumber, filteredSeatIdSeatTypeB.seatStatus)}
                             >
                                 {filteredSeatIdSeatTypeB.seatName}{filteredSeatIdSeatTypeB.seatNumber}
                             </div>
@@ -219,7 +231,7 @@ export function Seat() {
                                 id={`seat-${filteredSeatIdSeatTypeC.seatId}`}
                                 className={`seat ${filteredSeatIdSeatTypeC.seatStatus === 'Available' ? 'available' : 'occupied'}`}
                                 key={filteredSeatIdSeatTypeC.seatId}
-                                onClick={() => handleSeatClick(filteredSeatIdSeatTypeC.seatId, filteredSeatIdSeatTypeC.seatStatus)}
+                                onClick={() => handleSeatClick(filteredSeatIdSeatTypeC.seatId, filteredSeatIdSeatTypeC.seatName, filteredSeatIdSeatTypeC.seatNumber, filteredSeatIdSeatTypeC.seatStatus)}
                             >
                                 {filteredSeatIdSeatTypeC.seatName}{filteredSeatIdSeatTypeC.seatNumber}
                             </div>

@@ -28,11 +28,11 @@ button:not(:disabled) {
     background: linear-gradient(to right, rgba(160, 166, 218, 0.5), rgba(81, 87, 136, 0.5));
 }
 
-.registerAndLogin{
+.registerAndLogin {
     display: flex;
 }
 
-.logout{
+.logout {
     margin-top: 7px;
 }
 
@@ -40,5 +40,13 @@ button:not(:disabled) {
     span.mx-2.d-flex.align-items-center {
         display: none !important;
     }
+
+    .registerAndLogin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
 
 }
